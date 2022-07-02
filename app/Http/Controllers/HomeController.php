@@ -25,15 +25,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        $currentUser = auth()->user()->areas;
-        foreach ($currentUser as $c) {
-            $areaId = $c->id;
+        $areasCollection = auth()->user()->areas;
+        $areaId = [];
+        foreach ($areasCollection as $c) {
+            $areaId[] = $c->id;
         };
-
-        $consumers = Consumer::where('area_id', $areaId)->paginate();
-        dd($consumers);
-
+        if ($areaId == null) {
+            $consumers = Consumer::paginate(10);
+            return view('front.consumer.index', compact('consumers'));
+        }
+        $consumers = Consumer::whereIn('area_id', $areaId)->paginate(10);
         return view('front.consumer.index', compact('consumers'));
     }
 }
