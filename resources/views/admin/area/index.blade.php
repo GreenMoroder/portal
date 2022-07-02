@@ -1,7 +1,7 @@
 @extends('admin.layouts.layout')
 
 @section('title')
-    Список локаций
+    Локации
 @endsection
 
 @section('content')
@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
                         <li class="breadcrumb-item active">Локации</li>
                     </ol>
                 </div>
@@ -29,7 +29,7 @@
         <!-- Default box -->
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Список</h3>
+                <h3 class="card-title">Созданные локации</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -45,37 +45,40 @@
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover text-nowrap">
                             <thead>
-
                                 <tr>
                                     <th style="width: 30px">#</th>
-
                                     <th>Локация</th>
                                     <th>Actions</th>
                                 </tr>
-
                             </thead>
                             <tbody>
-
                                 @foreach ($areas as $area)
                                     <tr>
                                         <td>{{ $area->id }}</td>
                                         <td><a href="{{ route('consumers.show', [$area->id]) }}">{{ $area->name }}</a>
                                         </td>
                                         <td>
-                                            <a href="{{ route('areas.edit', ['area' => $area->id]) }}"
-                                                class="btn btn-info btn-sm float-left mr-1">
-                                                <i class="fas fa-pencil-alt"></i>
+                                            <a class="btn btn-primary btn-sm"
+                                                href="{{ route('consumers.show', [$area->id]) }}">
+                                                <i class="fas fa-folder">
+                                                </i>
+                                                View
                                             </a>
-
-                                            <form action="{{ route('areas.destroy', ['area' => $area->id]) }}"
-                                                method="POST" class="float-left">
+                                            <a href="{{ route('areas.edit', ['area' => $area->id]) }}"
+                                                class="btn btn-info btn-sm">
+                                                <i class="fas fa-pencil-alt"></i>
+                                                Edit
+                                            </a>
+                                            <form style="display:inline-block"
+                                                action="{{ route('areas.destroy', ['area' => $area->id]) }}"
+                                                method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm"
                                                     onclick="return confirm('Подтвердите удаление')">
-                                                    <i class="fas fa-trash-alt"></i>
+                                                    <i class="fas fa-trash"></i>
+                                                    Delete
                                                 </button>
-
                                             </form>
                                         </td>
                                     </tr>

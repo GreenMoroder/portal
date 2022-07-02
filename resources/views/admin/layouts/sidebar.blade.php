@@ -40,14 +40,12 @@
                    data-accordion="true">
                    <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+
                    <li class="nav-item">
                        <a href="{{ route('logout') }}" class="nav-link"
                            onclick="event.preventDefault();
                        document.getElementById('logout-form').submit();">
-
-
                            <i class="nav-icon fas fa-sign-out-alt"></i>
-
                            <p>
                                Выйти
                            </p>
@@ -55,6 +53,14 @@
                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                            @csrf
                        </form>
+                   </li>
+                   <li class="nav-item">
+                       <a href="{{ route('index') }}" class="nav-link">
+                           <i class="nav-icon fas fa-home"></i>
+                           <p>
+                               Главная
+                           </p>
+                       </a>
                    </li>
                    <li class="nav-item has-treeview">
                        <a href="#" class="nav-link">

@@ -97,6 +97,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        User::destroy($user->id);
+        return redirect()->route('users.index')->with('status', 'user updated');
     }
 }

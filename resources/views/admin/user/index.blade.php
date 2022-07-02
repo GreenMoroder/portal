@@ -1,11 +1,10 @@
 @extends('admin.layouts.layout')
 
 @section('title')
-    Список пользователей
+    Пользователи
 @endsection
 
 @section('content')
-
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
@@ -31,7 +30,7 @@
         <!-- Default box -->
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Список</h3>
+                <h3 class="card-title">Список пользователей</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -82,7 +81,8 @@
                                         <span class="badge badge-success">Success</span>
                                     </td>
                                     <td class="project-actions text-right">
-                                        <a class="btn btn-primary btn-sm" href="{{ route('users.show', [$user->id]) }}">
+                                        <a class="btn btn-primary btn-sm" href="#">
+                                            {{-- <a class="btn btn-primary btn-sm" href="{{ route('users.show', [$user->id]) }}"> --}}
                                             <i class="fas fa-folder">
                                             </i>
                                             View
@@ -92,31 +92,24 @@
                                             <i class="fas fa-pencil-alt"></i>
                                             Edit
                                         </a>
-
-
-                                        <a class="btn btn-danger btn-sm" href="#"
-                                            onclick="event.preventDefault();
-                                        document.getElementById('delete-form').submit();">
-                                            <i class="fas fa-trash">
-                                            </i>
-                                            Delete
-                                        </a>
-                                        <form id="delete-form" class="d-none"
+                                        <form style="display:inline-block"
                                             action="{{ route('users.destroy', ['user' => $user->id]) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit">
-
+                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Подтвердите удаление')">
+                                                <i class="fas fa-trash"></i>
+                                                Delete
                                             </button>
-
                                         </form>
                                     </td>
                                 </tr>
+                            @endforeach
                         </tbody>
-                @endforeach
-                </table>
-            @else
-                <p>Пользователей пока нет...</p>
+
+                    </table>
+                @else
+                    <p>Пользователей пока нет...</p>
                 @endif
 
 
@@ -133,5 +126,4 @@
 
     </section>
     <!-- /.content -->
-
 @endsection

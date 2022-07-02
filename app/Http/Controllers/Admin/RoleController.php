@@ -51,7 +51,7 @@ class RoleController extends Controller
 
         $permissions = Permission::whereIn('id', $request->permissions)->get();
         $newRole->syncPermissions($permissions);
-        return redirect()->back()->with('status', 'Role added');
+        return redirect()->route('roles.index')->with('status', 'Role added');
     }
     /**
      * Display the specified resource.
