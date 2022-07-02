@@ -55,6 +55,9 @@
                                 <th style="width: 30%">
                                     Роль
                                 </th>
+                                <th style="width: 30%">
+                                    Локация
+                                </th>
 
                                 <th style="width: 20%">
                                     Статус
@@ -70,12 +73,15 @@
                                     <td>
                                         {{ $user->name }}
                                     </td>
+
                                     <td>
                                         @foreach ($user->roles as $role)
                                             {{ $role['name'] }}
                                         @endforeach
                                     </td>
-
+                                    <td>
+                                        {{ $user->areas->pluck('name')->join(', ') }}
+                                    </td>
 
                                     <td class="project-state">
                                         <span class="badge badge-success">Success</span>

@@ -49,6 +49,19 @@
                             @endforeach
                         </select>
                     </div>
+
+                    <div class="form-group">
+                        <label for="areas">Выбор локаций</label>
+                        <select name="areas[]" id="areas" class="select2" multiple="multiple"
+                            data-placeholder="Выбор локаций" style="width: 100%;">
+                            @foreach ($areas as $k => $v)
+                                <option value="{{ $k }}"@if (in_array($k, $user->areas->pluck('id')->all())) selected @endif>
+                                    {{ $v }}</option>
+                            @endforeach
+
+
+                        </select>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Сохранить</button>

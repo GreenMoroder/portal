@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use App\Models\Area;
 
 class UserController extends Controller
 {
@@ -61,10 +62,11 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::orderBy('name')->get();
-
+        $areas = Area::pluck('name', 'id')->all();
         return view('admin.user.edit', compact([
             'user',
-            'roles'
+            'roles',
+            'areas'
         ]));
     }
 
@@ -81,10 +83,14 @@ class UserController extends Controller
             'name' => 'required|max:255',
             'role_id' => 'required|integer|exists:roles,id',
         ]);
+        // dd($request->all());
+
         $user->update([
             'name' => $request['name']
         ]);
         $role = Role::find($request->role_id);
+        $user->areas()->sync($request->areas);
+
         $user->syncRoles([$role->name]);
         return redirect()->back()->with('status', 'user updated');
     }

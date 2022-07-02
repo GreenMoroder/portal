@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Area extends Model
 {
     protected $fillable = ['name'];
@@ -12,5 +13,10 @@ class Area extends Model
     public function consumers()
     {
         return $this->hasMany(Consumer::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
     }
 }
