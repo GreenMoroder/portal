@@ -94,26 +94,12 @@
                                             <td>{{ $consumer->reading }}</td>
                                             <td>{{ $consumer->note }}</td>
                                             <td>{{ $consumer->photo }}</td>
-
-
-
                                             <td style="min-width: 100px">
-                                                <a href="{{ route('consumers.edit', ['consumer' => $consumer->id]) }}"
-                                                    class="btn btn-info btn-sm float-left mr-1">
+                                                <a href="{{ route('edit', ['consumer' => $consumer->id]) }}"
+                                                    class="btn btn-info btn-sm">
                                                     <i class="fas fa-pencil-alt"></i>
+                                                    Редактировать
                                                 </a>
-
-                                                <form
-                                                    action="{{ route('consumers.destroy', ['consumer' => $consumer->id]) }}"
-                                                    method="POST" class="float-left">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"
-                                                        onclick="return confirm('Подтвердите удаление')">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </button>
-
-                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

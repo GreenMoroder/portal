@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ConsumerController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HomeController;
 
 
 
@@ -24,14 +25,8 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-
-
-
-// Route::get('/', function () {
-//     return view('welcome');
-// })->name('home');
-
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('edit', [HomeController::class, 'edit'])->name('edit');
 
 
 Route::middleware('role:super-user')->prefix('admin')->group(function () {

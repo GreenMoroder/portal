@@ -44,10 +44,7 @@
                        <a href="{{ route('logout') }}" class="nav-link"
                            onclick="event.preventDefault();
                        document.getElementById('logout-form').submit();">
-
-
                            <i class="nav-icon fas fa-sign-out-alt"></i>
-
                            <p>
                                Выйти
                            </p>
@@ -57,8 +54,27 @@
                        </form>
                    </li>
 
-
-
+                   @if (auth()->user()->can('show'))
+                       <li class="nav-item has-treeview">
+                           <a href="#" class="nav-link">
+                               <i class="nav-icon fas fa-map"></i>
+                               <p>
+                                   Локации
+                                   <i class="right fas fa-angle-left"></i>
+                               </p>
+                           </a>
+                           <ul class="nav nav-treeview">
+                               @foreach ($areas as $area)
+                                   <li class="nav-item">
+                                       <a href="{{ route('areas.create') }}" class="nav-link">
+                                           <i class="far fa-circle nav-icon"></i>
+                                           <p> {{ $area->name }}</p>
+                                       </a>
+                                   </li>
+                               @endforeach
+                           </ul>
+                       </li>
+                   @endif
                </ul>
            </nav>
            <!-- /.sidebar-menu -->
