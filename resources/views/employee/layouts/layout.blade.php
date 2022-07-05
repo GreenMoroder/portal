@@ -8,7 +8,7 @@
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link rel="stylesheet" href="{{ asset('assets\admin\css\adminlte.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/css/adminlte.css') }}">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -185,7 +185,7 @@
             </ul>
         </nav>
         <!-- /.navbar -->
-        @include('front.layouts.sidebar')
+        @include('employee.layouts.sidebar')
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">

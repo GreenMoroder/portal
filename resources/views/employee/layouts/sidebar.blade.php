@@ -54,7 +54,7 @@
                        </form>
                    </li>
 
-                   @if (auth()->user()->can('show'))
+                   @if (auth()->user()->can('show') && isset($areas))
                        <li class="nav-item has-treeview">
                            <a href="#" class="nav-link">
                                <i class="nav-icon fas fa-map"></i>
@@ -66,7 +66,7 @@
                            <ul class="nav nav-treeview">
                                @foreach ($areas as $area)
                                    <li class="nav-item">
-                                       <a href="{{ route('areas.create') }}" class="nav-link">
+                                       <a href="{{ route('employees.show', [$area->id]) }}" class="nav-link">
                                            <i class="far fa-circle nav-icon"></i>
                                            <p> {{ $area->name }}</p>
                                        </a>

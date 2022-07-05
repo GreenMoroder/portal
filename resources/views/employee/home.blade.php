@@ -1,4 +1,4 @@
-@extends('front.layouts.layout')
+@extends('employee.layouts.layout')
 
 @section('title')
     Главная

@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\ConsumerController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\EmployeeController;
 
 
 
@@ -25,8 +25,8 @@ use App\Http\Controllers\HomeController;
 
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('edit', [HomeController::class, 'edit'])->name('edit');
+Route::get('/', [EmployeeController::class, 'index'])->name('home');
+Route::resource('employees', EmployeeController::class);
 
 
 Route::middleware('role:super-user')->prefix('admin')->group(function () {

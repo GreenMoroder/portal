@@ -49,7 +49,6 @@
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover text-nowrap">
                             <thead>
-
                                 <tr>
                                     <th style="width: 30px">#</th>
                                     <th>Номер лицевого счета</th>
@@ -94,16 +93,14 @@
                                         <td>{{ $consumer->crawl_date }}</td>
                                         <td>{{ $consumer->reading }}</td>
                                         <td>{{ $consumer->note }}</td>
-                                        <td>{{ $consumer->photo }}</td>
-
-
-
+                                        <td><a target="_blank" href="{{ $consumer->getImage() }}"><img
+                                                    src="{{ $consumer->getImage() }}" alt=""
+                                                    class="img-thumbnail" width="100"></a></td>
                                         <td style="min-width: 100px">
                                             <a href="{{ route('consumers.edit', ['consumer' => $consumer->id]) }}"
                                                 class="btn btn-info btn-sm float-left mr-1">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
-
                                             <form
                                                 action="{{ route('consumers.destroy', ['consumer' => $consumer->id]) }}"
                                                 method="POST" class="float-left">

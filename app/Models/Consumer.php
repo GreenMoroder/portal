@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\Request as HttpRequest;
+
+use Illuminate\Support\Facades\Storage;
 
 class Consumer extends Model
 {
@@ -36,5 +40,30 @@ class Consumer extends Model
     public function area()
     {
         return $this->belongsTo(Area::class);
+    }
+
+    public static function uploadPhoto(HttpRequest $request, $photo = null)
+    {
+        if ($request->hasFile('photo')) {
+            if ($photo) {
+                Storage::delete($photo);
+            }
+            $folder = date('Y-m-d');
+            return $request->file('photo')->store("img/$folder");
+        }
+        return null;
+    }
+
+    public function getImage()
+    {
+        if (!$this->photo) {
+            return asset('assets/image/no-image.png');
+        }
+        return asset("../storage/app/$this->photo");
+    }
+
+    public function getCrawlDate()
+    {
+        return Carbon::parse($this->created_at);
     }
 }

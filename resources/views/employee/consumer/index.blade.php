@@ -1,4 +1,4 @@
-@extends('front.layouts.layout')
+@extends('employee.layouts.layout')
 @if (auth()->user()->can('show'))
     @section('title')
         Список потребителей
@@ -46,7 +46,7 @@
 
                     @if (count($consumers))
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover text-nowrap">
+                            <table class="table table-bordered table-hover text-nowrap ">
                                 <thead>
 
                                     <tr>
@@ -93,13 +93,18 @@
                                             <td>{{ $consumer->crawl_date }}</td>
                                             <td>{{ $consumer->reading }}</td>
                                             <td>{{ $consumer->note }}</td>
-                                            <td>{{ $consumer->photo }}</td>
-                                            <td style="min-width: 100px">
-                                                <a href="{{ route('edit', ['consumer' => $consumer->id]) }}"
+                                            <td><a target="_blank" href="{{ $consumer->getImage() }}"><img
+                                                        src="{{ $consumer->getImage() }}" alt=""
+                                                        class="img-thumbnail" width="100"></a>
+                                            </td>
+                                            <td>
+
+                                                <a href="{{ route('employees.edit', ['employee' => $consumer->id]) }}"
                                                     class="btn btn-info btn-sm">
                                                     <i class="fas fa-pencil-alt"></i>
                                                     Редактировать
                                                 </a>
+
                                             </td>
                                         </tr>
                                     @endforeach
