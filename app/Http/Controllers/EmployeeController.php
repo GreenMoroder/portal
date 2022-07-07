@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Area;
 use App\Models\Consumer;
-use Illuminate\Contracts\Cache\Store;
-use Illuminate\Support\Facades\Storage;
 
 class EmployeeController extends Controller
 {
@@ -92,7 +90,6 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $request->validate([
             'crawl_date' => 'nullable',
             'year_release' => 'nullable',
@@ -103,7 +100,6 @@ class EmployeeController extends Controller
         $consumer = Consumer::find($id);
         $data = $request->all();
         $data['photo'] = Consumer::uploadPhoto($request, $consumer->photo);
-
         $consumer->update($data);
         return redirect()->route('employees.index')->with('success', 'Данные сохранены');
     }

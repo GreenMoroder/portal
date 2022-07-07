@@ -68,7 +68,9 @@
                                         <th>Показания прибора учета на дату обхода</th>
                                         <th>Примечание</th>
                                         <th>Фото</th>
-                                        <th>Action</th>
+                                        @if (auth()->user()->can('edit'))
+                                            <th>Action</th>
+                                        @endif
                                     </tr>
 
                                 </thead>
@@ -97,15 +99,15 @@
                                                         src="{{ $consumer->getImage() }}" alt=""
                                                         class="img-thumbnail" width="100"></a>
                                             </td>
-                                            <td>
-
-                                                <a href="{{ route('employees.edit', ['employee' => $consumer->id]) }}"
-                                                    class="btn btn-info btn-sm">
-                                                    <i class="fas fa-pencil-alt"></i>
-                                                    Редактировать
-                                                </a>
-
-                                            </td>
+                                            @if (auth()->user()->can('edit'))
+                                                <td>
+                                                    <a href="{{ route('employees.edit', ['employee' => $consumer->id]) }}"
+                                                        class="btn btn-info btn-sm">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                        Редактировать
+                                                    </a>
+                                                </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>

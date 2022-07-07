@@ -41,6 +41,10 @@
                             id="exampleInputEmail1">
                     </div>
                     <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control" placeholder="{{ $user->email }}" disabled="">
+                    </div>
+                    <div class="form-group">
                         <label>Роль</label>
                         <select name="role_id" class="form-control">
                             @foreach ($roles as $role)

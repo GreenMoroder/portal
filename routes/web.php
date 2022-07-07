@@ -8,9 +8,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\EmployeeController;
-
-
-
+use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +27,8 @@ Route::get('/', [EmployeeController::class, 'index'])->name('home');
 Route::resource('employees', EmployeeController::class);
 
 
-Route::middleware('role:super-user')->prefix('admin')->group(function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['role:super-user']], function () {
+
     Route::get('/', [MainController::class, 'index'])->name('index');
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);

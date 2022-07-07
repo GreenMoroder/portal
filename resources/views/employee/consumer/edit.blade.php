@@ -115,10 +115,15 @@
                             @method ('PUT')
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="crawl_date">Дата обхода</label>
-                                    <input value="{{ $consumer->getCrawlDate() }}" name="crawl_date"
-                                        class="form-control @error('crawl_date') is-invalid @enderror" type="text"
-                                        class="form-control" id="crawl_date" disabled="">
+                                    <label>Дата обхода</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                        </div>
+                                        <input value="{{ $consumer->getCrawlDate() }}" name="crawl_date"
+                                            class="form-control @error('crawl_date') is-invalid @enderror" type="text"
+                                            class="form-control" id="crawl_date">
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="year_release">Год выпуска прибора учета</label>

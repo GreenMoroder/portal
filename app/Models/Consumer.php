@@ -64,6 +64,7 @@ class Consumer extends Model
 
     public function getCrawlDate()
     {
-        return Carbon::parse($this->created_at);
+        $date = Carbon::parse($this->created_at);
+        return $date->format('d.m.Y');
     }
 }

@@ -48,10 +48,9 @@ class RoleController extends Controller
         $newRole = Role::create([
             'name' => $request->name,
         ]);
-
         $permissions = Permission::whereIn('id', $request->permissions)->get();
         $newRole->syncPermissions($permissions);
-        return redirect()->route('roles.index')->with('status', 'Role added');
+        return redirect()->route('roles.index')->with('success', 'Роль создана');
     }
     /**
      * Display the specified resource.

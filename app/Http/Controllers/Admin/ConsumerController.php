@@ -68,7 +68,8 @@ class ConsumerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $consumer = Consumer::find($id);
+        return view('admin.consumer.edit', compact('consumer'));
     }
 
     /**`
@@ -80,7 +81,18 @@ class ConsumerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'crawl_date' => 'nullable',
+            'year_release' => 'nullable',
+            'reading' => 'nullable',
+            'note' => 'nullable',
+            'photo' => 'nullable|image'
+        ]);
+        $consumer = Consumer::find($id);
+        $data = $request->all();
+        $data['photo'] = Consumer::uploadPhoto($request, $consumer->photo);
+        $consumer->update($data);
+        return redirect()->route('consumers.index')->with('success', 'Данные сохранены');
     }
 
     /**

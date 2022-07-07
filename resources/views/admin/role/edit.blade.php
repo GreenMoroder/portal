@@ -37,23 +37,26 @@
                 @method ('PUT')
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Название</label>
+                        <label for="exampleInputEmail1">Название роли</label>
                         <input value="{{ $role->name }}" name="name"
                             class="form-control @error('name') is-invalid @enderror" type="text" class="form-control"
                             id="exampleInputEmail1">
                     </div>
 
-
+                    <div class="mt-4 mb-2">
+                        <b>Права доступа к ресурсу</b>
+                    </div>
                     @foreach ($permissions as $permission)
-                        <div class="form-check">
-
+                        <div class="custom-control custom-checkbox">
                             <input type="checkbox" value="{{ $permission->id }}"
                                 @if ($role->hasPermissionTo($permission->name)) checked @endif name="permissions[]"
-                                class="form-check-input" id="{{ $permission->id }}">
-                            <label for="{{ $permission->id }}" class="form-check-label">{{ $permission->name }}</label>
+                                class="custom-control-input" id="{{ $permission->id }}">
+                            <label for="{{ $permission->id }}"
+                                class="custom-control-label">{{ $permission->name }}</label>
 
                         </div>
                     @endforeach
+
 
                 </div>
 

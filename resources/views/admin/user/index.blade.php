@@ -53,6 +53,9 @@
                                     Имя
                                 </th>
                                 <th style="width: 30%">
+                                    Email
+                                </th>
+                                <th style="width: 30%">
                                     Роль
                                 </th>
                                 <th style="width: 30%">
@@ -73,6 +76,9 @@
                                     <td>
                                         {{ $user->name }}
                                     </td>
+                                    <td>
+                                        {{ $user->email }}
+                                    </td>
 
                                     <td>
                                         @foreach ($user->roles as $role)
@@ -87,12 +93,6 @@
                                         <span class="badge badge-success">Success</span>
                                     </td>
                                     <td class="project-actions text-right">
-                                        <a class="btn btn-primary btn-sm" href="#">
-                                            {{-- <a class="btn btn-primary btn-sm" href="{{ route('users.show', [$user->id]) }}"> --}}
-                                            <i class="fas fa-folder">
-                                            </i>
-                                            View
-                                        </a>
                                         <a href="{{ route('users.edit', ['user' => $user->id]) }}"
                                             class="btn btn-info btn-sm">
                                             <i class="fas fa-pencil-alt"></i>

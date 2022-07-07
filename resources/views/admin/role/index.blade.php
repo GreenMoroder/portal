@@ -64,33 +64,20 @@
                                         {{ $role->name }}
                                     </td>
                                     <td class="project-actions text-right">
-                                        <a class="btn btn-primary btn-sm" href="{{ route('roles.show', [$role->id]) }}">
-                                            <i class="fas fa-folder">
-                                            </i>
-                                            View
-                                        </a>
                                         <a href="{{ route('roles.edit', ['role' => $role->id]) }}"
                                             class="btn btn-info btn-sm">
                                             <i class="fas fa-pencil-alt"></i>
                                             Edit
                                         </a>
-
-
-                                        <a class="btn btn-danger btn-sm" href="#"
-                                            onclick="event.preventDefault();
-                                        document.getElementById('delete-form').submit();">
-                                            <i class="fas fa-trash">
-                                            </i>
-                                            Delete
-                                        </a>
-                                        <form id="delete-form" class="d-none"
+                                        <form style="display:inline-block"
                                             action="{{ route('roles.destroy', ['role' => $role->id]) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit">
-
+                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Подтвердите удаление')">
+                                                <i class="fas fa-trash"></i>
+                                                Delete
                                             </button>
-
                                         </form>
                                     </td>
                                 </tr>
