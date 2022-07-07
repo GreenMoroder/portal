@@ -20,7 +20,7 @@ class CreateSuperUserSeeder extends Seeder
         $superUser = User::create([
             'name' => 'Admin',
             'email' => 'greenmoroder@gmail.com',
-            'password' => Hash::make('1234567890'),
+            'password' => Hash::make('Izai69kai'),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
