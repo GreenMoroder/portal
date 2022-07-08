@@ -42,7 +42,7 @@
             </div>
             <div class="card-body">
                 @if (count($areas))
-                    <div class="table-responsive">
+                    <div class="table-responsive p-0">
                         <table class="table table-bordered table-hover text-nowrap">
                             <thead>
                                 <tr>

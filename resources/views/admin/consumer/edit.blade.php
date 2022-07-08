@@ -139,16 +139,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="note">Примечание</label>
-                                    <textarea id="note" name="note" class="form-control @error('note') is-invalid @enderror" rows="3"
-                                        placeholder="{{ $consumer->note }}"></textarea>
+                                    <textarea id="note" name="note" class="form-control @error('note') is-invalid @enderror" rows="3">{{ $consumer->note }}</textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="photo">Фото</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input name="photo" id="photo" type="file"
-                                                class="custom-file-input">
+                                            <input value="{{ $consumer->photo }}" name="photo" id="photo"
+                                                type="file" class="custom-file-input">
                                             <label class="custom-file-label" for="photo">Choose file</label>
                                         </div>
                                     </div>

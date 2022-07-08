@@ -139,8 +139,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="note">Примечание</label>
-                                    <textarea id="note" name="note" class="form-control @error('note') is-invalid @enderror" rows="3"
-                                        placeholder="{{ $consumer->note }}"></textarea>
+                                    <textarea id="note" name="note" class="form-control @error('note') is-invalid @enderror" rows="3">{{ $consumer->note }}</textarea>
                                 </div>
 
                                 <div class="form-group">

@@ -29,3 +29,4 @@ class PermissionsSeeder extends Seeder
         ]);
     }
 }
+// php artisan db:seed --class=PermissionsSeeder

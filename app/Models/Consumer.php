@@ -51,7 +51,7 @@ class Consumer extends Model
             $folder = date('Y-m-d');
             return $request->file('photo')->store("img/$folder");
         }
-        return null;
+        return $photo;
     }
 
     public function getImage()

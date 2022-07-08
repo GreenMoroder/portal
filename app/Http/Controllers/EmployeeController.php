@@ -101,7 +101,7 @@ class EmployeeController extends Controller
         $data = $request->all();
         $data['photo'] = Consumer::uploadPhoto($request, $consumer->photo);
         $consumer->update($data);
-        return redirect()->route('employees.index')->with('success', 'Данные сохранены');
+        return redirect()->back()->with('success', 'Данные сохранены');
     }
 
     /**

@@ -46,7 +46,7 @@
 
 
                 @if (count($consumers))
-                    <div class="table-responsive">
+                    <div class="table-responsive p-0">
                         <table class="table table-bordered table-hover text-nowrap">
                             <thead>
                                 <tr>
@@ -125,7 +125,7 @@
             <!-- /.card-body -->
             <div class="card-footer clearfix">
 
-                {{ $consumers->links() }}
+                <div class="pagination pagination-sm m-0 float-right"> {{ $consumers->onEachSide(1)->links() }}</div>
             </div>
             <!-- /.card-footer-->
         </div>

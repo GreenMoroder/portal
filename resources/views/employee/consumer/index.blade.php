@@ -120,7 +120,7 @@
                 <!-- /.card-body -->
                 <div class="card-footer clearfix">
 
-                    {{ $consumers->links() }}
+                    <div class="pagination pagination-sm m-0 float-right"> {{ $consumers->onEachSide(1)->links() }}</div>
                 </div>
                 <!-- /.card-footer-->
             </div>
