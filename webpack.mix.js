@@ -11,12 +11,13 @@ const mix = require('laravel-mix');
  |
  */
 
- mix.styles(
+mix.styles(
     [
         'resources/assets/admin/plugins/fontawesome-free/css/all.css',
         'resources/assets/admin/css/adminlte.css',
         'resources/assets/admin/plugins/select2/css/select2.css',
-        'resources/assets/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.css'
+        'resources/assets/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.css',
+        'resources/assets/admin/plugins/DataTables/datatables.css'
     ],
     'public/assets/admin/css/adminlte.css');
 
@@ -27,7 +28,9 @@ mix.scripts(
         'resources/assets/admin/js/adminlte.js',
         'resources/assets/admin/plugins/select2/js/select2.full.js',
         'resources/assets/admin/js/demo.js',
-        
+        'resources/assets/admin/plugins/DataTables/datatables.js',
+
+
     ],
     'public/assets/admin/js/adminlte.js');
 

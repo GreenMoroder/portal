@@ -208,6 +208,18 @@
 
     <script src="{{ asset('assets/admin/js/adminlte.js') }}"></script>
     <script>
+        $(function() {
+            $("#example1").DataTable({
+                "paging": true,
+                "ordering": true,
+                "info": false,
+                "stateSave": true,
+                "responsive": true,
+                "lengthChange": true,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        });
         $('.nav-sidebar a').each(function() {
             let location = window.location.protocol + '//' + window.location.host + window.location.pathname;
             let link = this.href;
@@ -220,3 +232,19 @@
 </body>
 
 </html>
+
+{{-- $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  }); --}}
