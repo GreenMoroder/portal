@@ -21,7 +21,7 @@ class ConsumerController extends Controller
      */
     public function index()
     {
-        $consumers = Consumer::get();
+        $consumers = Consumer::paginate(50);
         return view('admin.consumer.index', compact('consumers'));
     }
 

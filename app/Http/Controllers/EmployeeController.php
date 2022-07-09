@@ -64,7 +64,7 @@ class EmployeeController extends Controller
     public function show($id)
     {
         $areas = $this->getAreas();
-        $consumers = Consumer::where('area_id', $id)->paginate(10);
+        $consumers = Consumer::where('area_id', $id)->paginate(50);
         return view('employee.consumer.index', compact('consumers', 'areas'));
     }
 

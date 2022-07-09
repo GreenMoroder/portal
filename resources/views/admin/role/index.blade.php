@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
@@ -22,14 +21,10 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
-    <!-- Main content -->
     <section class="content">
-        <!-- Default box -->
         <div class="card card-primary">
             <div class="card-header">
                 <h3 class="card-title">Созданные роли</h3>
-
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                         <i class="fas fa-minus"></i>
@@ -40,68 +35,25 @@
                 </div>
             </div>
             <div class="card-body">
-                @if (count($roles))
-                    <div class="table-responsive p-0">
-                        <table class="table table-bordered table-hover text-nowrap">
-                            <thead>
-                                <tr>
-                                    <th style="width: 1%">
-                                        #
-                                    </th>
-                                    <th style="width: 20%">
-                                        Роль
-                                    </th>
-                                    <th style="width: 20%">
-                                        Action
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($roles as $role)
-                                    <tr>
-                                        <td>
-                                            {{ $role->id }}
-                                        </td>
-                                        <td>
-                                            {{ $role->name }}
-                                        </td>
-                                        <td class="project-actions">
-                                            <a href="{{ route('roles.edit', ['role' => $role->id]) }}"
-                                                class="btn btn-info btn-sm">
-                                                <i class="fas fa-pencil-alt"></i>
-                                                Edit
-                                            </a>
-                                            <form style="display:inline-block"
-                                                action="{{ route('roles.destroy', ['role' => $role->id]) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Подтвердите удаление')">
-                                                    <i class="fas fa-trash"></i>
-                                                    Delete
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                            </tbody>
-                @endforeach
-                </table>
+                @include('table.role')
             </div>
-        @else
-            <p>Ролей пока нет...</p>
-            @endif
         </div>
-        <!-- /.card-body -->
-        <div class="card-footer clearfix">
-
-            {{-- {{ $areas->links() }} --}}
-        </div>
-        <!-- /.card-footer-->
-        </div>
-        <!-- /.card -->
-
     </section>
-    <!-- /.content -->
-
 @endsection
+@push('scripts')
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                paging: false,
+                ordering: true,
+                info: false,
+                stateSave: true,
+                responsive: true,
+                lengthChange: true,
+                autoWidth: false,
+                buttons: false,
+                searching: false,
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+@endpush

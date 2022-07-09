@@ -21,7 +21,6 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
     <!-- Main content -->
     <section class="content">
         <!-- Default box -->
@@ -39,86 +38,7 @@
                 </div>
             </div>
             <div class="card-body">
-                @if (count($users))
-                    <div class="table-responsive p-0">
-                        <table class="table table-bordered table-hover text-nowrap">
-                            <thead>
-                                <tr>
-                                    <th style="width: 1%">
-                                        #
-                                    </th>
-                                    <th style="width: 20%">
-                                        Имя
-                                    </th>
-                                    <th style="width: 30%">
-                                        Email
-                                    </th>
-                                    <th style="width: 30%">
-                                        Роль
-                                    </th>
-                                    <th style="width: 30%">
-                                        Локация
-                                    </th>
-                                    <th style="width: 20%">
-                                        Статус
-                                    </th>
-                                    <th style="width: 20%"> </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($users as $user)
-                                    <tr>
-                                        <td>
-                                            {{ $user->id }}
-                                        </td>
-                                        <td>
-                                            {{ $user->name }}
-                                        </td>
-                                        <td>
-                                            {{ $user->email }}
-                                        </td>
-
-                                        <td>
-                                            @foreach ($user->roles as $role)
-                                                {{ $role['name'] }}
-                                            @endforeach
-                                        </td>
-                                        <td>
-                                            {{ $user->areas->pluck('name')->join(', ') }}
-                                        </td>
-
-                                        <td class="project-state">
-                                            <span class="badge badge-success">Success</span>
-                                        </td>
-                                        <td class="project-actions text-right">
-                                            <a href="{{ route('users.edit', ['user' => $user->id]) }}"
-                                                class="btn btn-info btn-sm">
-                                                <i class="fas fa-pencil-alt"></i>
-                                                Edit
-                                            </a>
-                                            <form style="display:inline-block"
-                                                action="{{ route('users.destroy', ['user' => $user->id]) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Подтвердите удаление')">
-                                                    <i class="fas fa-trash"></i>
-                                                    Delete
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                @else
-                    <p>Пользователей пока нет...</p>
-                @endif
-
-
-
+                @include('table.user')
             </div>
             <!-- /.card-body -->
             <div class="card-footer clearfix">
@@ -132,3 +52,20 @@
     </section>
     <!-- /.content -->
 @endsection
+@push('scripts')
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                paging: false,
+                ordering: true,
+                info: false,
+                stateSave: true,
+                responsive: true,
+                lengthChange: true,
+                autoWidth: false,
+                buttons: ["colvis"],
+                searching: false,
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+@endpush

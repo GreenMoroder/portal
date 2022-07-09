@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
@@ -41,58 +40,10 @@
                 </div>
             </div>
             <div class="card-body">
-                @if (count($areas))
-                    <div class="table-responsive p-0">
-                        <table class="table table-bordered table-hover text-nowrap">
-                            <thead>
-                                <tr>
-                                    <th style="width: 30px">#</th>
-                                    <th>Локация</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($areas as $area)
-                                    <tr>
-                                        <td>{{ $area->id }}</td>
-                                        <td><a href="{{ route('consumers.show', [$area->id]) }}">{{ $area->name }}</a>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-primary btn-sm"
-                                                href="{{ route('consumers.show', [$area->id]) }}">
-                                                <i class="fas fa-folder">
-                                                </i>
-                                                View
-                                            </a>
-                                            <a href="{{ route('areas.edit', ['area' => $area->id]) }}"
-                                                class="btn btn-info btn-sm">
-                                                <i class="fas fa-pencil-alt"></i>
-                                                Edit
-                                            </a>
-                                            <form style="display:inline-block"
-                                                action="{{ route('areas.destroy', ['area' => $area->id]) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Подтвердите удаление')">
-                                                    <i class="fas fa-trash"></i>
-                                                    Delete
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                @else
-                    <p>Локаций пока нет...</p>
-                @endif
+                @include('table.area')
             </div>
             <!-- /.card-body -->
             <div class="card-footer clearfix">
-
                 {{ $areas->links() }}
             </div>
             <!-- /.card-footer-->
@@ -101,5 +52,4 @@
 
     </section>
     <!-- /.content -->
-
 @endsection
