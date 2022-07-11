@@ -55,7 +55,7 @@
                             class="btn btn-info btn-sm float-left mr-1">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
-                        <form action=""{{ route('users.destroy', ['user' => $user->id]) }}" method="POST"
+                        <form action="{{ route('users.destroy', ['user' => $user->id]) }}" method="POST"
                             class="float-left">
                             @csrf
                             @method('DELETE')
@@ -63,6 +63,7 @@
                                 onclick="return confirm('Подтвердите удаление')">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

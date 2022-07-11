@@ -24,11 +24,10 @@ use GuzzleHttp\Middleware;
 Auth::routes();
 
 Route::get('/', [EmployeeController::class, 'index'])->name('home');
-Route::resource('employees', EmployeeController::class);
+Route::resource('employees-area', EmployeeController::class);
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['role:super-user']], function () {
-
     Route::get('/', [MainController::class, 'index'])->name('index');
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);

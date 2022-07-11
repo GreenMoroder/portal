@@ -66,7 +66,7 @@
                            <ul class="nav nav-treeview">
                                @foreach ($areas as $area)
                                    <li class="nav-item">
-                                       <a href="{{ route('employees.show', [$area->id]) }}" class="nav-link">
+                                       <a href="{{ route('employees-area.show', [$area->id]) }}" class="nav-link">
                                            <i class="far fa-circle nav-icon"></i>
                                            <p> {{ $area->name }}</p>
                                        </a>
@@ -81,3 +81,7 @@
        </div>
        <!-- /.sidebar -->
    </aside>
+   <script>
+       ("[data-widget="
+           sidebar - search "]").SidebarSearch(options)
+   </script>

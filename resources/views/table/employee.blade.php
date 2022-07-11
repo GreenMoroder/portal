@@ -52,10 +52,9 @@
                         </td>
                         @if (auth()->user()->can('edit'))
                             <td>
-                                <a href="{{ route('employees.edit', ['employee' => $consumer->id]) }}"
-                                    class="btn btn-info btn-sm">
-                                    <i class="fas fa-pencil-alt"></i>
-                                    Редактировать
+                                <a href="{{ route('employees-area.edit', ['employees_area' => $consumer->id]) }}"
+                                    class="btn btn-app">
+                                    <i class="fas fa-edit"></i> Редактировать
                                 </a>
                             </td>
                         @endif

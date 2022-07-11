@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('created_at')->where('name', '!=', 'super-user')->get();
+        $users = User::orderBy('created_at')->where('email', '!=', 'greenmoroder@gmail.com')->get();
         return view('admin.user.index', compact('users'));
     }
 
@@ -92,7 +92,7 @@ class UserController extends Controller
         $user->areas()->sync($request->areas);
 
         $user->syncRoles([$role->name]);
-        return redirect()->back()->with('status', 'user updated');
+        return redirect()->back()->with('success', 'Данные сохранены');
     }
 
     /**
@@ -104,6 +104,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         User::destroy($user->id);
-        return redirect()->route('users.index')->with('status', 'user updated');
+        return redirect()->route('users.index')->with('success', 'Пользователь удален');
     }
 }

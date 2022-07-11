@@ -14,7 +14,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ URL::previous() }}">Home</a>
+                        </li>
                         <li class="breadcrumb-item active">Потребитель электроэнергии # {{ $consumer->id }}</li>
                     </ol>
                 </div>
@@ -110,7 +111,7 @@
                             <h3 class="card-title">{{ $consumer->full_name }}</h3>
                         </div>
                         <form enctype="multipart/form-data" method="POST"
-                            action="{{ route('employees.update', ['employee' => $consumer->id]) }}">
+                            action="{{ route('employees-area.update', ['employees_area' => $consumer->id]) }}">
                             @csrf
                             @method ('PUT')
                             <div class="card-body">
@@ -160,7 +161,9 @@
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Сохранить</button>
                             </div>
+
                         </form>
+
                     </div>
                     <!-- /.card -->
                 </div>

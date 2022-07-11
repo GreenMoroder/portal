@@ -49,6 +49,9 @@
                     <div class="pagination pagination-sm m-0 float-right"> {{ $consumers->onEachSide(1)->links() }}</div>
                 </div>
                 <!-- /.card-footer-->
+                {{-- <div class="overlay">
+                    <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+                </div> --}}
             </div>
             <!-- /.card -->
 
