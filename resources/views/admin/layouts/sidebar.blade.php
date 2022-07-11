@@ -74,22 +74,19 @@
                    <li class="nav-item has-treeview">
                        <a href="#" class="nav-link">
                            <i class="nav-icon fas fa-user-cog"></i>
-                           <p>
-                               Роли
-
-                               <i class="right fas fa-angle-left"></i>
-                           </p>
+                           <p>Роли</p>
+                           <i class="right fas fa-angle-left"></i>
                        </a>
                        <ul class="nav nav-treeview">
                            <li class="nav-item">
                                <a href="{{ route('roles.index') }}" class="nav-link">
-                                   <i class="far fa-circle nav-icon"></i>
+                                   <i class="fas fa-list"></i>
                                    <p>Список</p>
                                </a>
                            </li>
                            <li class="nav-item">
                                <a href="{{ route('roles.create') }}" class="nav-link">
-                                   <i class="far fa-circle nav-icon"></i>
+                                   <i class="fas fa-plus"></i>
                                    <p>Создать</p>
                                </a>
                            </li>
@@ -98,21 +95,19 @@
                    <li class="nav-item has-treeview">
                        <a href="#" class="nav-link">
                            <i class="nav-icon fas fa-map"></i>
-                           <p>
-                               Локации
-                               <i class="right fas fa-angle-left"></i>
-                           </p>
+                           <p>Локации</p>
+                           <i class="right fas fa-angle-left"></i>
                        </a>
                        <ul class="nav nav-treeview">
                            <li class="nav-item">
                                <a href="{{ route('areas.index') }}" class="nav-link">
-                                   <i class="far fa-circle nav-icon"></i>
+                                   <i class="fas fa-list"></i>
                                    <p>Список</p>
                                </a>
                            </li>
                            <li class="nav-item">
                                <a href="{{ route('areas.create') }}" class="nav-link">
-                                   <i class="far fa-circle nav-icon"></i>
+                                   <i class="fas fa-plus"></i>
                                    <p>Создать</p>
                                </a>
                            </li>
@@ -123,36 +118,26 @@
                    <li class="nav-item has-treeview">
                        <a href="#" class="nav-link">
                            <i class="nav-icon fas fa-plug"></i>
-                           <p>
-                               Потребители
+                           <p>Потребители</p>
+                           <i class="right fas fa-angle-left"></i>
 
-                               <i class="right fas fa-angle-left"></i>
-                           </p>
                        </a>
                        <ul class="nav nav-treeview">
                            <li class="nav-item">
                                <a href="{{ route('consumers.index') }}" class="nav-link">
-                                   <i class="far fa-circle nav-icon"></i>
+                                   <i class="fas fa-list"></i>
                                    <p>Список</p>
                                </a>
                            </li>
                            <li class="nav-item">
-                               <a href="{{ route('consumers.export') }}" class="nav-link">
-                                   <i class="far fa-circle nav-icon"></i>
-                                   <p>Экспортировать</p>
-                               </a>
-                           </li>
-                           <li class="nav-item">
                                <a href="{{ route('consumers.create') }}" class="nav-link">
-                                   <i class="far fa-circle nav-icon"></i>
+                                   <i class="fas fa-file-import"></i>
                                    <p>Импортировать</p>
                                </a>
                            </li>
 
                        </ul>
                    </li>
-
-
                </ul>
            </nav>
            <!-- /.sidebar-menu -->

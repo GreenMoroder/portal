@@ -18,10 +18,8 @@
                     Локация
                 </th>
                 <th>
-                    Статус
+                    Action
                 </th>
-                <th>
-                    Action</th>
             </tr>
         </thead>
         <tbody>
@@ -46,24 +44,20 @@
                         {{ $user->areas->pluck('name')->join(', ') }}
                     </td>
 
-                    <td class="project-state">
-                        <span class="badge badge-success">Success</span>
-                    </td>
-                    <td style="min-width: 100px">
-
-                        <a href="{{ route('users.edit', ['user' => $user->id]) }}"
-                            class="btn btn-info btn-sm float-left mr-1">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
-                        <form action="{{ route('users.destroy', ['user' => $user->id]) }}" method="POST"
-                            class="float-left">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm"
-                                onclick="return confirm('Подтвердите удаление')">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </form>
+                    <td>
+                        <div class="btn-group">
+                            <a style="border-radius: 5px" class="mx-1 btn btn-info"
+                                href="{{ route('users.edit', ['user' => $user->id]) }}">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <form action="{{ route('users.destroy', ['user' => $user->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="mx-1 btn btn-danger" type="submit"
+                                    onclick="return confirm('Подтвердите удаление')"><i
+                                        class="fas fa-trash-alt"></i></button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             @endforeach

@@ -1,7 +1,7 @@
 @extends('admin.layouts.layout')
 
 @section('title')
-    Новый потребитель
+    Импортировать в Базу Данных
 @endsection
 
 @section('content')
@@ -10,12 +10,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Импортировать</h1>
+                    <h1>Импортировать в Базу Данных</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Импортировать</li>
+                        <li class="breadcrumb-item"><a href="{{ url()->previous() }}">Назад</a></li>
+                        <li class="breadcrumb-item active">Импортировать в Базу Данных</li>
                     </ol>
                 </div>
             </div>
@@ -26,38 +26,42 @@
     <section class="content">
 
         <!-- Default box -->
-        <div class="card card-primary">
-            <div class="card-header">
-                <h3 class="card-title">Потребители</h3>
-            </div>
-            <form enctype="multipart/form-data" method="POST" action="{{ route('consumers.import') }}">
-                @csrf
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="category_id">Локация</label>
-                        <select name="category_id" id="category_id" class="form-control ">
-                            @foreach ($areas as $k => $v)
-                                <option value="{{ $k }}">{{ $v }}</option>
-                            @endforeach
-                        </select>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Потребители</h3>
                     </div>
-
-
-
-                    <div class="form-group">
-                        <label for="file">Формат: XLSX</label>
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input name="file" id="file" type="file" class="custom-file-input">
-                                <label class="custom-file-label" for="file">Choose file</label>
+                    <form enctype="multipart/form-data" method="POST" action="{{ route('consumers.import') }}">
+                        @csrf
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="category_id">Локация</label>
+                                <select name="category_id" id="category_id" class="form-control ">
+                                    @foreach ($areas as $k => $v)
+                                        <option value="{{ $k }}">{{ $v }}</option>
+                                    @endforeach
+                                </select>
                             </div>
 
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Отправить</button>
-                    </div>
-            </form>
+
+
+                            <div class="form-group">
+                                <label for="file">Формат: XLSX</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input name="file" id="file" type="file" class="custom-file-input">
+                                        <label class="custom-file-label" for="file">Choose file</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Отправить</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
         </div>
 
 

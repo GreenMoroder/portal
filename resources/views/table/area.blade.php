@@ -4,29 +4,39 @@
             <tr>
                 <th style="width: 30px">#</th>
                 <th>Локация</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($areas as $area)
                 <tr>
-                    <td>{{ $area->id }}</td>
-                    <td><a href="{{ route('consumers.show', [$area->id]) }}">{{ $area->name }}</a>
-                    </td>
+                    <td class="align-middle text-center">{{ $area->id }}</td>
                     <td>
-                        <a href="{{ route('areas.edit', ['area' => $area->id]) }}"
-                            class="btn btn-info btn-sm float-left mr-1">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
-                        <form action="{{ route('areas.destroy', ['area' => $area->id]) }}" method="POST"
-                            class="float-left">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm"
-                                onclick="return confirm('Подтвердите удаление')">
-                                <i class="fas fa-trash-alt"></i>
+                        <div class="btn-group">
+                            <a href="{{ route('consumers.show', [$area->id]) }}" type="button" class="btn btn-default">
+                                {{ $area->name }}</a>
+                            <button type="button" class="btn btn-default dropdown-toggle dropdown-icon"
+                                data-toggle="dropdown" aria-expanded="false">
+                                <span class="sr-only">Toggle Dropdown</span>
                             </button>
-                        </form>
+                            <div class="dropdown-menu" role="menu" style="">
+
+                                <a class="dropdown-item"
+                                    href="{{ route('consumers.export', ['area' => $area->id, 'name' => $area->name]) }}"><i
+                                        class="fas fa-file-export"></i> Экспортировать</a>
+                                <a class="dropdown-item" href="{{ route('areas.edit', ['area' => $area->id]) }}"><i
+                                        class="fas fa-edit"></i> Редактировать</a>
+
+                                <div class="dropdown-divider"></div>
+                                <form action="{{ route('areas.destroy', ['area' => $area->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="dropdown-item" type="submit" class=""
+                                        onclick="return confirm('Подтвердите удаление')">
+                                        <i class="fas fa-trash"></i> Удалить
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             @endforeach

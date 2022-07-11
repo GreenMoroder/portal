@@ -20,7 +20,7 @@
                 <th>Показания прибора учета на дату обхода</th>
                 <th>Примечание</th>
                 <th>Фото</th>
-                <th></th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -45,20 +45,22 @@
                     <td>{{ $consumer->note }}</td>
                     <td><a target="_blank" href="{{ $consumer->getImage() }}"><img src="{{ $consumer->getImage() }}"
                                 class="img-thumbnail" width="100"></a></td>
-                    <td style="min-width: 100px">
-                        <a href="{{ route('consumers.edit', ['consumer' => $consumer->id]) }}"
-                            class="btn btn-info btn-sm float-left mr-1">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
-                        <form action="{{ route('consumers.destroy', ['consumer' => $consumer->id]) }}" method="POST"
-                            class="float-left">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm"
-                                onclick="return confirm('Подтвердите удаление')">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </form>
+
+                    <td>
+                        <div class="btn-group">
+                            <a style="border-radius: 5px" class="mx-1 btn btn-info"
+                                href="{{ route('consumers.edit', ['consumer' => $consumer->id]) }}">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <form action="{{ route('consumers.destroy', ['consumer' => $consumer->id]) }}"
+                                method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="mx-1 btn btn-danger" type="submit"
+                                    onclick="return confirm('Подтвердите удаление')"><i
+                                        class="fas fa-trash-alt"></i></button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             @endforeach
@@ -83,7 +85,7 @@
                 <th>Показания прибора учета на дату обхода</th>
                 <th>Примечание</th>
                 <th>Фото</th>
-                <th></th>
+                <th>Action</th>
             </tr>
         </tfoot>
     </table>

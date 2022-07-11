@@ -57,7 +57,8 @@ class ConsumerController extends Controller
     public function show($id)
     {
         $consumers = Consumer::where('area_id', $id)->paginate(10);
-        return view('admin.consumer.index', compact('consumers'));
+        $area = Area::find($id);
+        return view('admin.consumer.show', compact('consumers', 'area'));
     }
 
     /**
@@ -106,9 +107,11 @@ class ConsumerController extends Controller
         //
     }
 
-    public function export()
+    public function export(Request $request)
     {
-        return Excel::download(new ConsumersExport, 'consumers.xlsx');
+        $id = $request->area_id;
+        $name = $request->name;
+        return Excel::download(new ConsumersExport($id), $name . '.xlsx');
     }
 
     public function import(Request $request)
