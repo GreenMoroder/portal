@@ -46,5 +46,10 @@ mix.copy(
     'resources/assets/admin/css/adminlte.css.map',
     'public/assets/admin/css/adminlte.css.map'
 )
+
+mix.js('resources/js/app.js', 'public/assets/auth/js')
+    .sass('resources/sass/app.scss', 'public/assets/auth/css')
+    .sourceMaps();
+
 // npm install
 // npm run dev

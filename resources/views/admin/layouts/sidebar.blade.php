@@ -74,20 +74,27 @@
                    <li class="nav-item has-treeview">
                        <a href="#" class="nav-link">
                            <i class="nav-icon fas fa-user-cog"></i>
-                           <p>Роли</p>
-                           <i class="right fas fa-angle-left"></i>
+                           <p>
+                               Роли
+
+                               <i class="right fas fa-angle-left"></i>
+                           </p>
                        </a>
                        <ul class="nav nav-treeview">
                            <li class="nav-item">
                                <a href="{{ route('roles.index') }}" class="nav-link">
                                    <i class="fas fa-list"></i>
-                                   <p>Список</p>
+                                   <p>
+                                       Список
+                                   </p>
                                </a>
                            </li>
                            <li class="nav-item">
                                <a href="{{ route('roles.create') }}" class="nav-link">
                                    <i class="fas fa-plus"></i>
-                                   <p>Создать</p>
+                                   <p>
+                                       Создать
+                                   </p>
                                </a>
                            </li>
                        </ul>
@@ -95,8 +102,10 @@
                    <li class="nav-item has-treeview">
                        <a href="#" class="nav-link">
                            <i class="nav-icon fas fa-map"></i>
-                           <p>Локации</p>
-                           <i class="right fas fa-angle-left"></i>
+                           <p>
+                               Локации
+                               <i class="right fas fa-angle-left"></i>
+                           </p>
                        </a>
                        <ul class="nav nav-treeview">
                            <li class="nav-item">
@@ -118,9 +127,9 @@
                    <li class="nav-item has-treeview">
                        <a href="#" class="nav-link">
                            <i class="nav-icon fas fa-plug"></i>
-                           <p>Потребители</p>
-                           <i class="right fas fa-angle-left"></i>
-
+                           <p>Потребители
+                               <i class="right fas fa-angle-left"></i>
+                           </p>
                        </a>
                        <ul class="nav nav-treeview">
                            <li class="nav-item">
@@ -144,7 +153,3 @@
        </div>
        <!-- /.sidebar -->
    </aside>
-   <script>
-       ("[data-widget="
-           sidebar - search "]").SidebarSearch(options)
-   </script>

@@ -1,4 +1,6 @@
 {
+    "/assets/auth/js/app.js": "/assets/auth/js/app.js",
+    "/assets/auth/css/app.css": "/assets/auth/css/app.css",
     "/assets/admin/css/adminlte.css": "/assets/admin/css/adminlte.css",
     "/assets/admin/js/adminlte.js": "/assets/admin/js/adminlte.js",
     "/assets/admin/webfonts/fa-brands-400.eot": "/assets/admin/webfonts/fa-brands-400.eot",

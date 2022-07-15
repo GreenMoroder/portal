@@ -81,7 +81,3 @@
        </div>
        <!-- /.sidebar -->
    </aside>
-   <script>
-       ("[data-widget="
-           sidebar - search "]").SidebarSearch(options)
-   </script>
