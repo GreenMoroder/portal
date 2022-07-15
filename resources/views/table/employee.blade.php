@@ -22,14 +22,14 @@
                     <th>Примечание</th>
                     <th>Фото</th>
                     @if (auth()->user()->can('edit'))
-                        <th>Action</th>
+                        <th>Действие</th>
                     @endif
                 </tr>
             </thead>
             <tbody>
                 @foreach ($consumers as $consumer)
                     <tr>
-                        <td>{{ $consumer->id }}</td>
+                        <td><a name="{{ $consumer->id }}">{{ $consumer->id }}</a></td>
                         <td>{{ $consumer->personal_account }}</td>
                         <td>{{ $consumer->full_name }}</td>
                         <td>{{ $consumer->district }}</td>
@@ -52,10 +52,13 @@
                         </td>
                         @if (auth()->user()->can('edit'))
                             <td>
-                                <a href="{{ route('employees-area.edit', ['employees_area' => $consumer->id]) }}"
-                                    class="btn btn-app">
-                                    <i class="fas fa-edit"></i> Редактировать
-                                </a>
+                                <div class="btn-group">
+                                    <a style="border-radius: 5px" class="mx-1 btn btn-info"
+                                        href="{{ route('employees-area.edit', ['employees_area' => $consumer->id]) }}">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+
+                                </div>
                             </td>
                         @endif
                     </tr>

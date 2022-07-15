@@ -137,6 +137,9 @@
                                     <input value="{{ $consumer->reading }}" name="reading"
                                         class="form-control @error('reading') is-invalid @enderror" type="text"
                                         class="form-control" id="reading">
+                                    @error('reading')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="note">Примечание</label>
@@ -148,10 +151,15 @@
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input name="photo" id="photo" type="file"
-                                                class="custom-file-input">
+                                                class="custom-file-input @error('photo') is-invalid @enderror">
+
                                             <label class="custom-file-label" for="photo">Choose file</label>
                                         </div>
+
                                     </div>
+                                    @error('photo')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                     <div><img src="{{ $consumer->getImage() }}" alt=""
                                             class="img-thumbnail mt-2" width="200">
                                     </div>

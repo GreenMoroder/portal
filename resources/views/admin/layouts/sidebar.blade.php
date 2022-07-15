@@ -127,8 +127,7 @@
                    <li class="nav-item has-treeview">
                        <a href="#" class="nav-link">
                            <i class="nav-icon fas fa-plug"></i>
-                           <p>Потребители
-                               <i class="right fas fa-angle-left"></i>
+                           <p>Потребители<i class="right fas fa-angle-left"></i>
                            </p>
                        </a>
                        <ul class="nav nav-treeview">

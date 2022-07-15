@@ -186,23 +186,6 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-
-                        @if ($errors->any())
-                            <div class="alert alert-danger mt-2">
-                                <ul class="list-unstyled">
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
-                        @if (session()->has('success'))
-                            <div class="alert alert-success mt-2">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-
                     </div>
                 </div>
             </div>
@@ -219,8 +202,22 @@
             <!-- Control sidebar content goes here -->
         </aside>
         <!-- /.control-sidebar -->
+        @if (session()->has('success'))
+            <div class="toast toast bg-success" style="position: fixed; bottom: 0; right: 0;" data-delay="5000">
+                <div class="toast-header">
+                    <strong class="mr-auto">{{ session('success') }}</strong>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+
+            </div>
+        @endif
+
     </div>
     <!-- ./wrapper -->
+
 
     <script src="{{ asset('assets/admin/js/adminlte.js') }}"></script>
     <script>
@@ -231,9 +228,13 @@
                 $(this).addClass('active');
                 $(this).closest('.has-treeview').addClass('menu-open');
             }
+            $('.toast').toast('show')
         });
     </script>
     @stack('scripts')
+
+
+
 </body>
 
 </html>

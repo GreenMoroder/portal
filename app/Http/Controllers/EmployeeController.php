@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Area;
 use App\Models\Consumer;
 
+
 class EmployeeController extends Controller
 {
     public function __construct()
@@ -61,10 +62,14 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
+        $uri = url()->full();
+        $request->session()->put('uri', $uri);
+
         $areas = $this->getAreas();
         $consumers = Consumer::where('area_id', $id)->paginate(50);
+
         return view('employee.consumer.index', compact('consumers', 'areas'));
     }
 
@@ -74,7 +79,7 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $areas = $this->getAreas();
         $consumer = Consumer::find($id);
@@ -90,6 +95,8 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $uri = session('uri');
+
         $request->validate([
             'crawl_date' => 'nullable',
             'year_release' => 'nullable',
@@ -101,7 +108,7 @@ class EmployeeController extends Controller
         $data = $request->all();
         $data['photo'] = Consumer::uploadPhoto($request, $consumer->photo);
         $consumer->update($data);
-        return redirect()->back()->with('success', 'Данные сохранены');
+        return redirect($uri . "#$id")->with('success', 'Данные сохранены');
     }
 
     /**
