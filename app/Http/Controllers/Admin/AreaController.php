@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Area;
 use App\Http\Requests\AreaRequest;
+use App\Models\Consumer;
+use Illuminate\Support\Facades\URL;
+
 
 class AreaController extends Controller
 {
@@ -48,9 +51,13 @@ class AreaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+        $uri = URL::full();
+        $request->session()->put('uri', $uri);
+        $consumers = Consumer::where('area_id', $id)->paginate(50);
+        $area = Area::find($id);
+        return view('admin.area.show', compact('consumers', 'area'));
     }
 
     /**

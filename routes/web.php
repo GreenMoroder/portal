@@ -23,7 +23,7 @@ use GuzzleHttp\Middleware;
 
 Auth::routes();
 
-Route::get('/', [EmployeeController::class, 'index'])->name('home');
+Route::get('/', [EmployeeController::class, 'index'])->name('personal');
 Route::resource('employees-area', EmployeeController::class);
 
 

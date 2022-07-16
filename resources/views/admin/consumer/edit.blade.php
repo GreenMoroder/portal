@@ -122,20 +122,20 @@
                                         </div>
                                         <input value="{{ $consumer->getCrawlDate() }}" name="crawl_date"
                                             class="form-control @error('crawl_date') is-invalid @enderror" type="text"
-                                            class="form-control" id="crawl_date" disabled>
+                                            id="crawl_date" disabled>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="year_release">Год выпуска прибора учета</label>
                                     <input value="{{ $consumer->year_release }}" name="year_release"
                                         class="form-control @error('year_release') is-invalid @enderror" type="text"
-                                        class="form-control" id="year_release">
+                                        id="year_release">
                                 </div>
                                 <div class="form-group">
                                     <label for="reading">Показания прибора учета на дату обхода</label>
                                     <input value="{{ $consumer->reading }}" name="reading"
                                         class="form-control @error('reading') is-invalid @enderror" type="text"
-                                        class="form-control" id="reading">
+                                        id="reading">
                                 </div>
                                 <div class="form-group">
                                     <label for="note">Примечание</label>

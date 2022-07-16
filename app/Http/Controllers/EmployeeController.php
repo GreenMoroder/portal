@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Area;
 use App\Models\Consumer;
-
+use Illuminate\Support\Facades\URL;
 
 class EmployeeController extends Controller
 {
@@ -64,7 +64,7 @@ class EmployeeController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $uri = url()->full();
+        $uri = URL::full();
         $request->session()->put('uri', $uri);
 
         $areas = $this->getAreas();
@@ -108,7 +108,7 @@ class EmployeeController extends Controller
         $data = $request->all();
         $data['photo'] = Consumer::uploadPhoto($request, $consumer->photo);
         $consumer->update($data);
-        return redirect($uri . "#$id")->with('success', 'Данные сохранены');
+        return redirect($uri . "#$id")->with('success', 'Данные успешно сохранены');
     }
 
     /**

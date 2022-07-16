@@ -83,16 +83,13 @@ class UserController extends Controller
             'name' => 'required|max:255',
             'role_id' => 'required|integer|exists:roles,id',
         ]);
-        // dd($request->all());
-
         $user->update([
             'name' => $request['name']
         ]);
         $role = Role::find($request->role_id);
         $user->areas()->sync($request->areas);
-
         $user->syncRoles([$role->name]);
-        return redirect()->back()->with('success', 'Данные сохранены');
+        return redirect()->route('users.index')->with('success', 'Данные сохранены');
     }
 
     /**

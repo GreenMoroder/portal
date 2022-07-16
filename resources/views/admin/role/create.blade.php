@@ -37,7 +37,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Название роли</label>
-                                <input name="name" class="form-control @error('title') is-invalid @enderror"
+                                <input name="name" class="form-control @error('name') is-invalid @enderror"
                                     type="text" class="form-control" id="exampleInputEmail1" placeholder="Контроллер">
                             </div>
                             <div class="mt-4 mb-2">
@@ -57,7 +57,21 @@
                         </div>
                     </form>
                 </div>
+                @if ($errors->any())
+                    @if ($errors->any())
+                        <div class="alert alert-warning alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h5><i class="icon fas fa-exclamation-triangle"></i> Внимание!</h5>
+                            <ul class="list-unstyled">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                @endif
             </div>
+
         </div>
         <!-- /.card -->
 

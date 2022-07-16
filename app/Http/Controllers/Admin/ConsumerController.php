@@ -11,6 +11,7 @@ use App\Models\Area;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ConsumersExport;
 use App\Imports\ConsumersImport;
+use Illuminate\Support\Facades\URL;
 
 class ConsumerController extends Controller
 {
@@ -19,8 +20,10 @@ class ConsumerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $uri = URL::full();
+        $request->session()->put('uri', $uri);
         $consumers = Consumer::paginate(50);
         return view('admin.consumer.index', compact('consumers'));
     }
@@ -56,9 +59,6 @@ class ConsumerController extends Controller
      */
     public function show($id)
     {
-        $consumers = Consumer::where('area_id', $id)->paginate(10);
-        $area = Area::find($id);
-        return view('admin.consumer.show', compact('consumers', 'area'));
     }
 
     /**
@@ -82,6 +82,7 @@ class ConsumerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $uri = session('uri');
         $request->validate([
             'crawl_date' => 'nullable',
             'year_release' => 'nullable',
@@ -93,7 +94,7 @@ class ConsumerController extends Controller
         $data = $request->all();
         $data['photo'] = Consumer::uploadPhoto($request, $consumer->photo);
         $consumer->update($data);
-        return redirect()->route('consumers.index')->with('success', 'Данные сохранены');
+        return redirect($uri . "#$id")->with('success', 'Данные успешно сохранены');
     }
 
     /**
@@ -104,7 +105,9 @@ class ConsumerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $uri = session('uri');
+        Consumer::destroy($id);
+        return redirect($uri . "#$id")->with('success', 'Данные о потребителе мягко удалены');
     }
 
     public function export(Request $request)

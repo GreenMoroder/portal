@@ -12,7 +12,7 @@
                     <td class="align-middle text-center">{{ $area->id }}</td>
                     <td>
                         <div class="btn-group">
-                            <a href="{{ route('consumers.show', [$area->id]) }}" type="button" class="btn btn-default">
+                            <a href="{{ route('areas.show', [$area->id]) }}" type="button" class="btn btn-default">
                                 {{ $area->name }}</a>
                             <button type="button" class="btn btn-default dropdown-toggle dropdown-icon"
                                 data-toggle="dropdown" aria-expanded="false">

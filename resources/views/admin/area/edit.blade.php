@@ -1,7 +1,7 @@
 @extends('admin.layouts.layout')
 
 @section('title')
-    Локация «{{ $area->name }}»
+    {{ $area->name }}
 @endsection
 
 @section('content')
@@ -10,12 +10,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Локация «{{ $area->name }}»</h1>
+                    <h1>{{ $area->name }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ url()->previous() }}">Назад</a></li>
-                        <li class="breadcrumb-item active">Локация «{{ $area->name }}»</li>
+                        <li class="breadcrumb-item"><a href="{{ route('areas.index') }}">Локации</a></li>
+                        <li class="breadcrumb-item active">{{ $area->name }}</li>
                     </ol>
                 </div>
             </div>
@@ -41,6 +41,9 @@
                         <input value="{{ $area->name }}" name="name"
                             class="form-control @error('name') is-invalid @enderror" type="text" class="form-control"
                             id="exampleInputEmail1">
+                        @error('name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                 </div>

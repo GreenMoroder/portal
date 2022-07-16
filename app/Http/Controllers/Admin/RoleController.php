@@ -16,7 +16,6 @@ class RoleController extends Controller
      */
     public function index()
     {
-
         $roles = Role::orderBy('name')->where('name', '!=', 'super-user')->get();
         return view('admin.role.index', compact('roles'));
     }
@@ -50,7 +49,7 @@ class RoleController extends Controller
         ]);
         $permissions = Permission::whereIn('id', $request->permissions)->get();
         $newRole->syncPermissions($permissions);
-        return redirect()->route('roles.index')->with('success', 'Роль создана');
+        return redirect()->route('roles.index')->with('success', "Роль «{$newRole['name']}» успешно создана");
     }
     /**
      * Display the specified resource.
@@ -100,7 +99,7 @@ class RoleController extends Controller
 
         $permissions = Permission::whereIn('id', $request->permissions)->get();
         $role->syncPermissions($permissions);
-        return redirect()->back()->with('status', 'Role added');
+        return redirect()->route('roles.index')->with('success', "Роль «{$role['name']}» успешно отредактирована");
     }
 
     /**
@@ -113,6 +112,6 @@ class RoleController extends Controller
     {
         $role = Role::where('name', '!=', 'super-user')->findOrFail($role->id);
         Role::destroy($role->id);
-        return redirect()->route('roles.index')->with('success', 'Роль удалена');
+        return redirect()->route('roles.index')->with('success', "Роль «{$role['name']}» успешно удалена");
     }
 }

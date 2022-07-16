@@ -20,13 +20,13 @@
                 <th>Показания прибора учета на дату обхода</th>
                 <th>Примечание</th>
                 <th>Фото</th>
-                <th>Action</th>
+                <th>Действие</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($consumers as $consumer)
                 <tr>
-                    <td>{{ $consumer->id }}</td>
+                    <td><a name="{{ $consumer->id }}">{{ $consumer->id }}</a></td>
                     <td>{{ $consumer->personal_account }}</td>
                     <td>{{ $consumer->full_name }}</td>
                     <td>{{ $consumer->district }}</td>
@@ -85,7 +85,7 @@
                 <th>Показания прибора учета на дату обхода</th>
                 <th>Примечание</th>
                 <th>Фото</th>
-                <th>Action</th>
+                <th>Действие</th>
             </tr>
         </tfoot>
     </table>
@@ -99,12 +99,13 @@
                 paging: false,
                 ordering: true,
                 info: false,
-                stateSave: true,
+                select: true,
                 responsive: true,
                 lengthChange: true,
                 autoWidth: false,
                 buttons: ["colvis"],
                 searching: false,
+                stateSave: true,
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
     </script>

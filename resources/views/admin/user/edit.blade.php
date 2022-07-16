@@ -53,7 +53,6 @@
                             @endforeach
                         </select>
                     </div>
-
                     <div class="form-group">
                         <label for="areas">Выбор локаций</label>
                         <select name="areas[]" id="areas" class="select2" multiple="multiple"
@@ -62,8 +61,6 @@
                                 <option value="{{ $k }}"@if (in_array($k, $user->areas->pluck('id')->all())) selected @endif>
                                     {{ $v }}</option>
                             @endforeach
-
-
                         </select>
                     </div>
                 </div>
@@ -73,7 +70,6 @@
             </form>
         </div>
         <!-- /.card -->
-
     </section>
     <!-- /.content -->
 @endsection

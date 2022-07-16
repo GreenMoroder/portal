@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ url()->previous() }}">Назад</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('index') }}">Главная</a></li>
                         <li class="breadcrumb-item active">Полный список потребителей</li>
                     </ol>
                 </div>
