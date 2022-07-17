@@ -53,7 +53,7 @@
                 ordering: true,
                 info: false,
                 stateSave: true,
-                responsive: true,
+                responsive: false,
                 lengthChange: true,
                 autoWidth: false,
                 buttons: false,

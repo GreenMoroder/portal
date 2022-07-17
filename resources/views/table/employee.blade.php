@@ -28,8 +28,8 @@
             </thead>
             <tbody>
                 @foreach ($consumers as $consumer)
-                    <tr>
-                        <td><a name="{{ $consumer->id }}">{{ $consumer->id }}</a></td>
+                    <tr @if ($consumer->id == session('id')) class="selected" @endif id="{{ $consumer->id }}">
+                        <td>{{ $consumer->id }}</td>
                         <td>{{ $consumer->personal_account }}</td>
                         <td>{{ $consumer->full_name }}</td>
                         <td>{{ $consumer->district }}</td>
@@ -74,15 +74,16 @@
         $(function() {
             $("#example1").DataTable({
                 paging: false,
-                ordering: true,
+                ordering: false,
                 info: false,
-                responsive: true,
+                responsive: false,
                 lengthChange: true,
-                autoWidth: false,
                 buttons: ["colvis"],
                 searching: false,
                 select: true,
+                colReorder: false,
                 stateSave: true,
+
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
     </script>

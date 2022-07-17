@@ -1,7 +1,7 @@
 @extends('employee.layouts.layout')
 
 @section('title')
-    Потребитель электроэнергии # {{ $consumer->id }}
+    Потребитель # {{ $consumer->id }}
 @endsection
 
 @section('content')
@@ -10,13 +10,18 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Потребитель электроэнергии # {{ $consumer->id }}</h1>
+                    <h1>Потребитель # {{ $consumer->id }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ URL::previous() }}">Home</a>
+                        <li class="breadcrumb-item"><a href="{{ route('personal') }}">Главная</a>
                         </li>
-                        <li class="breadcrumb-item active">Потребитель электроэнергии # {{ $consumer->id }}</li>
+                        <li class="breadcrumb-item"><a
+                                href="{{ route('employees-area.show', ['employees_area' => $area->id]) }}">{{ preg_replace('/\d/', '', $area->name) . $consumer->house . ' ' . $consumer->building }}</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            квартира {{ $consumer->apartment }}
+                        </li>
                     </ol>
                 </div>
             </div>

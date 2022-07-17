@@ -25,8 +25,8 @@
         </thead>
         <tbody>
             @foreach ($consumers as $consumer)
-                <tr>
-                    <td><a name="{{ $consumer->id }}">{{ $consumer->id }}</a></td>
+                <tr id="{{ $consumer->id }}">
+                    <td>{{ $consumer->id }}</td>
                     <td>{{ $consumer->personal_account }}</td>
                     <td>{{ $consumer->full_name }}</td>
                     <td>{{ $consumer->district }}</td>
@@ -100,7 +100,7 @@
                 ordering: true,
                 info: false,
                 select: true,
-                responsive: true,
+                responsive: false,
                 lengthChange: true,
                 autoWidth: false,
                 buttons: ["colvis"],
