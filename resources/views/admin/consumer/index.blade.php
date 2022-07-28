@@ -1,7 +1,7 @@
 @extends('admin.layouts.layout')
 
 @section('title')
-    Полный список потребителей
+    Все потребители
 @endsection
 
 @section('content')
@@ -10,12 +10,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Полный список потребителей</h1>
+                    <h1>Все потребители</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('index') }}">Главная</a></li>
-                        <li class="breadcrumb-item active">Полный список потребителей</li>
+                        <li class="breadcrumb-item active">Все потребители</li>
                     </ol>
                 </div>
             </div>

@@ -11,15 +11,18 @@ class EmployeeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $user = $request->user();
+        if ($user->hasRole('super-user')) {
+            return redirect()->route('index');
+        }
         $areas = $this->getAreas();
         return view('employee.home', compact('areas'));
     }

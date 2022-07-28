@@ -1,7 +1,7 @@
 @extends('admin.layouts.layout')
 
 @section('title')
-    Роль «{{ $role->name }}»
+    {{ $role->name }}
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Роль «{{ $role->name }}»</h1>
+                    <h1>{{ $role->name }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">

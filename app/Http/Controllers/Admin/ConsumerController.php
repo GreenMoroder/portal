@@ -70,7 +70,8 @@ class ConsumerController extends Controller
     public function edit($id)
     {
         $consumer = Consumer::find($id);
-        return view('admin.consumer.edit', compact('consumer'));
+        $area = Area::find($consumer->area_id);
+        return view('admin.consumer.edit', compact('consumer', 'area'));
     }
 
     /**`
@@ -94,6 +95,7 @@ class ConsumerController extends Controller
         $data = $request->all();
         $data['photo'] = Consumer::uploadPhoto($request, $consumer->photo);
         $consumer->update($data);
+        $request->session()->put('id', $id);
         return redirect($uri . "#$id")->with('success', 'Данные успешно сохранены');
     }
 
@@ -123,6 +125,6 @@ class ConsumerController extends Controller
         $file = $request->file('file')->store('import');
         ini_set('memory_limit', '-1');
         Excel::import(new ConsumersImport($id), $file);
-        return redirect()->route('consumers.index')->with('success', 'Файл импортирован');
+        return redirect()->route('areas.show', ['area' => $id])->with('success', 'Файл импортирован');
     }
 }

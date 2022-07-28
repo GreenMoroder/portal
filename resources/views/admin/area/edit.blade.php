@@ -14,6 +14,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{ route('index') }}">Главная</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('areas.index') }}">Локации</a></li>
                         <li class="breadcrumb-item active">{{ $area->name }}</li>
                     </ol>
@@ -30,8 +31,6 @@
             <div class="card-header">
                 <h3 class="card-title">Редактировать</h3>
             </div>
-
-
             <form method="POST" action="{{ route('areas.update', ['area' => $area->id]) }}">
                 @csrf
                 @method ('PUT')
