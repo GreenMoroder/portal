@@ -15,8 +15,9 @@ if (Request::is('activity/cleared')) {
 
 @endphp
 
-<div class="table-responsive">
-    <table id="example1" class="table table-bordered table-striped">
+<div class="table-responsive activity-table">
+    <table
+        class="table table-striped table-condensed table-sm @if (config('LaravelLogger.enableDrillDown') && $hoverable) table-hover @endif data-table">
         <thead>
             <tr>
                 <th>
@@ -30,7 +31,7 @@ if (Request::is('activity/cleared')) {
                     {!! trans('LaravelLogger::laravel-logger.dashboard.labels.time') !!}
                 </th>
                 <th>
-                    <i class="fa fa-file fa-fw" aria-hidden="true"></i>
+                    <i class="fa fa-file-text fa-fw" aria-hidden="true"></i>
                     {!! trans('LaravelLogger::laravel-logger.dashboard.labels.description') !!}
                 </th>
                 <th>
@@ -253,38 +254,17 @@ if (Request::is('activity/cleared')) {
 </div>
 
 @if (config('LaravelLogger.loggerPaginationEnabled'))
-    <div class="card-footer clearfix">
-        <div class="pagination pagination-sm m-0 float-right">
-            <div class="d-flex justify-content-center">
-                {!! $activities->render() !!}
-            </div>
-            {{-- <p>
-                {!! trans('LaravelLogger::laravel-logger.pagination.countText', [
-                    'firstItem' => $activities->firstItem(),
-                    'lastItem' => $activities->lastItem(),
-                    'total' => $activities->total(),
-                    'perPage' => $activities->perPage(),
-                ]) !!}
-            </p> --}}
+    <div class="text-center">
+        <div class="d-flex justify-content-center">
+            {!! $activities->render() !!}
         </div>
+        <p>
+            {!! trans('LaravelLogger::laravel-logger.pagination.countText', [
+                'firstItem' => $activities->firstItem(),
+                'lastItem' => $activities->lastItem(),
+                'total' => $activities->total(),
+                'perPage' => $activities->perPage(),
+            ]) !!}
+        </p>
     </div>
 @endif
-@push('scripts')
-    <script>
-        $(function() {
-            $("#example1").DataTable({
-                paging: false,
-                ordering: false,
-                info: false,
-                responsive: false,
-                lengthChange: true,
-                buttons: ["colvis"],
-                searching: false,
-                select: true,
-                colReorder: false,
-                stateSave: true,
-
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        });
-    </script>
-@endpush

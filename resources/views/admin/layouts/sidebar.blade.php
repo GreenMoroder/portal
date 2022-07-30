@@ -37,6 +37,14 @@
                        </a>
                    </li>
                    <li class="nav-item">
+                       <a href="{{ route('activity') }}" class="nav-link">
+                           <i class="nav-icon fas fa-clipboard"></i>
+                           <p>
+                               Журнал
+                           </p>
+                       </a>
+                   </li>
+                   <li class="nav-item">
                        <a href="{{ route('users.index') }}" class="nav-link">
                            <i class="nav-icon fas fa-users"></i>
                            <p>
