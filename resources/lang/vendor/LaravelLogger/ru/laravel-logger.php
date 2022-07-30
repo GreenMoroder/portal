@@ -41,31 +41,31 @@ return [
     |--------------------------------------------------------------------------
     */
     'dashboard' => [
-        'title'     => 'Activity Log',
+        'title'     => 'Журнал действий',
         'subtitle'  => 'Events',
 
         'labels'    => [
             'id'            => 'Id',
-            'time'          => 'Time',
-            'description'   => 'Description',
-            'user'          => 'User',
-            'method'        => 'Method',
-            'route'         => 'Route',
-            'ipAddress'     => 'Ip <span class="hidden-sm hidden-xs">Address</span>',
+            'time'          => 'Время',
+            'description'   => 'Описание',
+            'user'          => 'Пользователь',
+            'method'        => 'Метод',
+            'route'         => 'Маршрут',
+            'ipAddress'     => 'Ip <span class="hidden-sm hidden-xs">Адрес</span>',
             'agent'         => '<span class="hidden-sm hidden-xs">User </span>Agent',
-            'deleteDate'    => '<span class="hidden-sm hidden-xs">Date </span>Deleted',
+            'deleteDate'    => '<span class="hidden-sm hidden-xs">Дата </span>Удаления',
         ],
 
         'menu'      => [
-            'alt'           => 'Activity Log Menu',
+            'alt'           => 'Меню журнала действий',
             'clear'         => 'Clear Activity Log',
             'show'          => 'Show Cleared Logs',
             'back'          => 'Back to Activity Log',
         ],
 
         'search'    => [
-            'all'           => 'All',
-            'search'        => 'Search',
+            'all'           => 'Все',
+            'search'        => 'Поиск',
         ],
     ],
 
@@ -94,12 +94,12 @@ return [
         'list-group' => [
             'labels'    => [
                 'id'            => 'Activity Log ID:',
-                'ip'            => 'Ip Address',
+                'ip'            => 'Ip Адрес',
                 'description'   => 'Description',
                 'details'       => 'Details',
                 'userType'      => 'User Type',
                 'userId'        => 'User Id',
-                'route'         => 'Route',
+                'route'         => 'Маршрут',
                 'agent'         => 'User Agent',
                 'locale'        => 'Locale',
                 'referer'       => 'Referer',
