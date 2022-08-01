@@ -44,7 +44,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer clearfix">
-                {{ $areas->links() }}
+
             </div>
             <!-- /.card-footer-->
         </div>

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\EmployeeConsumerController;
 use GuzzleHttp\Middleware;
 
 /*
@@ -23,8 +24,9 @@ use GuzzleHttp\Middleware;
 
 Auth::routes();
 
-Route::get('/', [EmployeeController::class, 'index'])->name('personal')->middleware(['auth']);
-Route::resource('employees-area', EmployeeController::class);
+Route::get('/', [EmployeeController::class, 'index'])->name('personal')->middleware(['web', 'auth', 'activity']);
+Route::resource('employees-area', EmployeeController::class)->middleware(['web', 'auth', 'activity']);
+Route::resource('employees-consumer', EmployeeConsumerController::class)->middleware(['web', 'auth', 'activity']);
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['role:super-user']], function () {

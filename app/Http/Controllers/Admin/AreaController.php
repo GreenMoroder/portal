@@ -19,9 +19,24 @@ class AreaController extends Controller
      */
     public function index()
     {
-        $areas = Area::paginate(50);
-        return view('admin.area.index', compact('areas'));
+
+        $areas = Area::orderBy('created_at')->get();
+        $consumerModel = Consumer::cursor();
+
+
+        foreach ($areas as $area) {
+            $total[$area->id] = $consumerModel->where('area_id', $area->id)->count();
+            $part[$area->id] = $consumerModel->where('area_id', $area->id)->where('reading', '!=', null)->count();
+        }
+        return view('admin.area.index', compact('areas', 'total', 'part'));
     }
+
+
+    public function countOne($area)
+    {
+        return $area->where('area_id', $area->id)->count();
+    }
+
 
     /**
      * Show the form for creating a new resource.

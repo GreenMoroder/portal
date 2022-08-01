@@ -5,6 +5,8 @@
                 <tr>
                     <th style="width: 30px">#</th>
                     <th>Локация</th>
+                    <th>Контроллер</th>
+                    <th>Снятые показания</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,6 +40,18 @@
                                     </form>
                                 </div>
                             </div>
+                        </td>
+                        <td>{{ $area->users->pluck('name')->join(', ') }}</td>
+                        <td>
+                            <div class="progress-group">
+                                Прогресс
+                                <span class="float-right"><b>{{ $part[$area->id] }}</b>/{{ $total[$area->id] }}</span>
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar bg-primary"
+                                        style="width:{{ ($part[$area->id] / $total[$area->id]) * 100 }}%"></div>
+                                </div>
+                            </div>
+
                         </td>
                     </tr>
                 @endforeach

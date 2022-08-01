@@ -58,7 +58,7 @@
 
 @section('content')
 
-    <div class="container-fluid">
+    <div class="container-fluid mt-2">
 
         @if(config('LaravelLogger.enablePackageFlashMessageBlade'))
             @include('LaravelLogger::partials.form-status')

@@ -46,15 +46,14 @@
                         <td>{{ $consumer->crawl_date }}</td>
                         <td>{{ $consumer->reading }}</td>
                         <td>{{ $consumer->note }}</td>
-                        <td><a target="_blank" href="{{ $consumer->getImage() }}"><img
-                                    src="{{ $consumer->getImage() }}" alt="" class="img-thumbnail"
-                                    width="100"></a>
+                        <td><a target="_blank" href="{{ $consumer->getImage() }}"><img src="{{ $consumer->getImage() }}"
+                                    alt="" class="img-thumbnail" width="100"></a>
                         </td>
                         @if (auth()->user()->can('edit'))
                             <td>
                                 <div class="btn-group">
                                     <a style="border-radius: 5px" class="mx-1 btn btn-info"
-                                        href="{{ route('employees-area.edit', ['employees_area' => $consumer->id]) }}">
+                                        href="{{ route('employees-consumer.edit', ['employees_consumer' => $consumer->id]) }}">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
 

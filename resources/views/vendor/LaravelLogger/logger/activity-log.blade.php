@@ -56,7 +56,7 @@ $bootstrapCardClasses = is_null(config('LaravelLogger.bootstrapCardClasses')) ? 
 
 @section('content')
 
-    <div class="container-fluid">
+    <div class="container-fluid mt-2">
         @if (config('LaravelLogger.enableSearch'))
             @include('LaravelLogger::partials.form-search')
         @endif

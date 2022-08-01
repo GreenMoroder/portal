@@ -2,7 +2,7 @@
 
 $drilldownStatus = config('LaravelLogger.enableDrillDown');
 $prependUrl = '/activity/log/';
-
+$hoverable = false;
 if (isset($hoverable) && $hoverable === true) {
     $hoverable = true;
 } else {
@@ -72,7 +72,7 @@ if (Request::is('activity/cleared')) {
                             @if ($hoverable)
                                 {{ $activity->id }}
                             @else
-                                <a href="{{ url($prependUrl . $activity->id) }}">
+                                <a class="btn btn-block btn-outline-info" href="{{ url($prependUrl . $activity->id) }}">
                                     {{ $activity->id }}
                                 </a>
                             @endif
@@ -220,7 +220,7 @@ if (Request::is('activity/cleared')) {
                                     break;
                             }
                         @endphp
-                        <i class="fa {{ $browserIcon }} fa-fw" aria-hidden="true">
+                        <i class="fab {{ $browserIcon }}" aria-hidden="true">
                             <span class="sr-only">
                                 {{ $browser }}
                             </span>
@@ -280,7 +280,7 @@ if (Request::is('activity/cleared')) {
                 lengthChange: true,
                 buttons: ["colvis"],
                 searching: false,
-                select: true,
+                select: false,
                 colReorder: false,
                 stateSave: true,
 

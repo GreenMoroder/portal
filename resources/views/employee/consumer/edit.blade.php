@@ -116,7 +116,7 @@
                             <h3 class="card-title">{{ $consumer->full_name }}</h3>
                         </div>
                         <form enctype="multipart/form-data" method="POST"
-                            action="{{ route('employees-area.update', ['employees_area' => $consumer->id]) }}">
+                            action="{{ route('employees-consumer.update', ['employees_consumer' => $consumer->id]) }}">
                             @csrf
                             @method ('PUT')
                             <div class="card-body">

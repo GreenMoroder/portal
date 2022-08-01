@@ -22,7 +22,7 @@
     <!-- Main content -->
     <section class="content">
         <!-- Default box -->
-        <div class="card">
+        <div class="card card-primary">
             <div class="card-header">
                 <h3 class="card-title">Статистика</h3>
 
@@ -37,9 +37,25 @@
             </div>
             <div class="card-body">
                 <div class="row">
-
-
+                    @foreach ($areas as $area)
+                        <div class="col-lg-3 col-6">
+                            <div class="small-box bg-info">
+                                <div class="inner">
+                                    <h3>{{ round(($part[$area->id] / $total[$area->id]) * 100) }}<sup
+                                            style="font-size: 20px">%</sup></h3>
+                                    <p> {{ $area->name }}</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="nav-icon fas fa-map"></i>
+                                </div>
+                                <a href="{{ route('employees-area.show', [$area->id]) }}" class="small-box-footer">
+                                    Подробнее <i class="fas fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
+
             </div>
             <!-- /.card-body -->
             <div class="card-footer">

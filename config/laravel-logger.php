@@ -17,7 +17,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'rolesEnabled'   => env('LARAVEL_LOGGER_ROLES_ENABLED', true),
+    'rolesEnabled'   => env('LARAVEL_LOGGER_ROLES_ENABLED', true), //запрет на просмотр activity для всех кроме super-user
     'rolesMiddlware' => env('LARAVEL_LOGGER_ROLES_MIDDLWARE', 'role:super-user'),
 
     /*
@@ -47,7 +47,7 @@ return [
     | Laravel Logger Search Enable/Disable
     |--------------------------------------------------------------------------
     */
-    'enableSearch'      => env('LARAVEL_LOGGER_ENABLE_SEARCH', 'false'),
+    'enableSearch'      => env('LARAVEL_LOGGER_ENABLE_SEARCH', 'true'),
 
     /*
     |--------------------------------------------------------------------------
