@@ -18,7 +18,7 @@ mix.styles(
         'resources/assets/admin/plugins/select2/css/select2.css',
         'resources/assets/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.css',
         'resources/assets/admin/plugins/DataTables/datatables.css',
-
+        'resources/assets/admin/plugins/pace-progress/themes/blue/pace-theme-minimal.css'
     ],
     'public/assets/admin/css/adminlte.css');
 
@@ -30,7 +30,7 @@ mix.scripts(
         'resources/assets/admin/plugins/select2/js/select2.full.js',
         'resources/assets/admin/js/demo.js',
         'resources/assets/admin/plugins/DataTables/datatables.js',
-
+        'resources/assets/admin/plugins/pace-progress/pace.js'
 
 
     ],

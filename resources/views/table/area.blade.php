@@ -47,8 +47,8 @@
                                 Прогресс
                                 <span class="float-right"><b>{{ $part[$area->id] }}</b>/{{ $total[$area->id] }}</span>
                                 <div class="progress progress-sm">
-                                    <div class="progress-bar bg-primary"
-                                        style="width:{{ ($part[$area->id] / $total[$area->id]) * 100 }}%"></div>
+                                    <div class="progress-bar bg-primary" style="width:{{ $progress[$area->id] }}%">
+                                    </div>
                                 </div>
                             </div>
 
