@@ -47,7 +47,7 @@ return [
     | Laravel Logger Search Enable/Disable
     |--------------------------------------------------------------------------
     */
-    'enableSearch'      => env('LARAVEL_LOGGER_ENABLE_SEARCH', 'true'),
+    'enableSearch'      => env('LARAVEL_LOGGER_ENABLE_SEARCH', true),
 
     /*
     |--------------------------------------------------------------------------

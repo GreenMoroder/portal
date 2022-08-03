@@ -52,20 +52,3 @@
     </section>
     <!-- /.content -->
 @endsection
-@push('scripts')
-    <script>
-        $(function() {
-            $("#example1").DataTable({
-                paging: false,
-                ordering: true,
-                info: false,
-                stateSave: true,
-                responsive: true,
-                lengthChange: true,
-                autoWidth: false,
-                buttons: ["colvis"],
-                searching: false,
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        });
-    </script>
-@endpush

@@ -22,12 +22,10 @@ class EmployeeController extends Controller
             return redirect()->route('index');
         }
         $areas = $this->getAreas();
-        $consumerModel = Consumer::cursor();
-        foreach ($areas as $area) {
-            $total[$area->id] = $consumerModel->where('area_id', $area->id)->count();
-            $part[$area->id] = $consumerModel->where('area_id', $area->id)->where('reading', '!=', null)->count();
-        }
-        return view('employee.home', compact('areas', 'total', 'part',));
+        $consumers = Consumer::cursor();
+
+
+        return view('employee.home', compact('areas'));
     }
 
     private function getAreas()

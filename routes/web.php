@@ -22,7 +22,7 @@ use GuzzleHttp\Middleware;
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/', [EmployeeController::class, 'index'])->name('personal')->middleware(['web', 'auth', 'activity']);
 Route::resource('employees-area', EmployeeController::class)->middleware(['web', 'auth', 'activity']);
