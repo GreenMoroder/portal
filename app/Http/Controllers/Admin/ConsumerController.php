@@ -121,6 +121,10 @@ class ConsumerController extends Controller
 
     public function import(Request $request)
     {
+        $request->validate([
+            'file' => 'required',
+
+        ]);
         $id = $request->category_id;
         $file = $request->file('file')->store('import');
         ini_set('memory_limit', '-1');

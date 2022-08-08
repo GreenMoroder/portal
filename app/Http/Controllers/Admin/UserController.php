@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Models\Area;
+use App\Models\Consumer;
 
 class UserController extends Controller
 {
@@ -17,7 +18,14 @@ class UserController extends Controller
      */
     public function index()
     {
+        $consumers = Consumer::orderBy('created_at')->get();
         $users = User::orderBy('created_at')->where('email', '!=', 'greenmoroder@gmail.com')->get();
+        $areas = Area::orderBy('created_at')->get();
+        if (!$users->isEmpty()) {
+            $readingStat = $this->statCounter($areas, $consumers, 'reading');
+            $photoStat = $this->statCounter($areas, $consumers, 'photo');
+            return view('admin.user.index', compact('users', 'readingStat', 'photoStat'));
+        }
         return view('admin.user.index', compact('users'));
     }
 

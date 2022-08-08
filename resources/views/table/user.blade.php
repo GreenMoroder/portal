@@ -1,6 +1,6 @@
 @if (count($users))
     <div class="table-responsive">
-        <table id="example1" class="table table-bordered table-striped">
+        <table id="example1" class="table table-sm text-nowrap table-bordered table-striped">
             <thead>
                 <tr>
                     <th>
@@ -19,18 +19,44 @@
                         Локация
                     </th>
                     <th>
-                        Action
+                        Добавленные показания
                     </th>
+                    <th>
+                        Добавленные фото
+                    </th>
+
                 </tr>
             </thead>
             <tbody>
                 @foreach ($users as $user)
                     <tr>
+
+                        <td class="align-middle text-center">{{ $user->id }}</td>
                         <td>
-                            {{ $user->id }}
-                        </td>
-                        <td>
-                            {{ $user->name }}
+                            <div class="btn-group">
+                                <a href="{{ route('users.show', [$user->id]) }}" type="button" class="btn btn-default">
+                                    {{ $user->name }}</a>
+                                <button type="button" class="btn btn-default dropdown-toggle dropdown-icon"
+                                    data-toggle="dropdown" aria-expanded="false">
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <div class="dropdown-menu" role="menu" style="">
+
+
+                                    <a class="dropdown-item" href="{{ route('users.edit', ['user' => $user->id]) }}"><i
+                                            class="fas fa-edit"></i> Редактировать</a>
+
+                                    <div class="dropdown-divider"></div>
+                                    <form action="{{ route('users.destroy', ['user' => $user->id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="dropdown-item" type="submit" class=""
+                                            onclick="return confirm('Подтвердите удаление')">
+                                            <i class="fas fa-trash"></i> Удалить
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
                         </td>
                         <td>
                             {{ $user->email }}
@@ -44,21 +70,29 @@
                         <td>
                             {{ $user->areas->pluck('name')->join(', ') }}
                         </td>
-
                         <td>
-                            <div class="btn-group">
-                                <a style="border-radius: 5px" class="mx-1 btn btn-info"
-                                    href="{{ route('users.edit', ['user' => $user->id]) }}">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </a>
-                                <form action="{{ route('users.destroy', ['user' => $user->id]) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="mx-1 btn btn-danger" type="submit"
-                                        onclick="return confirm('Подтвердите удаление')"><i
-                                            class="fas fa-trash-alt"></i></button>
-                                </form>
-                            </div>
+                            {{-- <div class="progress-group">
+                                Прогресс
+                                <span
+                                    class="float-right"><b>{{ $readingStat['part'][$user->id] }}</b>/{{ $readingStat['total'][$user->id] }}</span>
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar bg-primary"
+                                        style="width:{{ $readingStat['progress'][$user->id] }}%">
+                                    </div>
+                                </div>
+                            </div> --}}
+                        </td>
+                        <td>
+                            {{-- <div class="progress-group">
+                                Прогресс
+                                <span
+                                    class="float-right"><b>{{ $photoStat['part'][$user->id] }}</b>/{{ $photoStat['total'][$user->id] }}</span>
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar bg-warning"
+                                        style="width:{{ $photoStat['progress'][$user->id] }}%">
+                                    </div>
+                                </div>
+                            </div> --}}
                         </td>
                     </tr>
                 @endforeach
@@ -77,9 +111,8 @@
                 info: false,
                 responsive: false,
                 lengthChange: true,
-                buttons: ["colvis"],
                 searching: false,
-                select: true,
+                select: false,
                 colReorder: false,
                 stateSave: true,
 

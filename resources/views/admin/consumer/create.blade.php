@@ -47,10 +47,10 @@
                                 <label for="file">Формат: XLSX</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input name="file" id="file" type="file" class="custom-file-input">
+                                        <input name="file" id="file" type="file"
+                                            class="custom-file-input @error('file') is-invalid @enderror">
                                         <label class="custom-file-label" for="file">Choose file</label>
                                     </div>
-
                                 </div>
                             </div>
                             <div class="card-footer">

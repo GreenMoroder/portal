@@ -20,4 +20,12 @@ class Area extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($Area) {
+            $Area->consumers()->delete();
+        });
+    }
 }

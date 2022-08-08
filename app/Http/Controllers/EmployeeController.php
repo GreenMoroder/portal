@@ -23,7 +23,10 @@ class EmployeeController extends Controller
         }
         $areas = $this->getAreas();
         $consumers = Consumer::cursor();
-
+        if (!$areas->isEmpty()) {
+            $stat = $this->statCounter($areas, $consumers, 'reading');
+            return view('employee.home', compact('areas', 'stat'));
+        }
 
         return view('employee.home', compact('areas'));
     }

@@ -1,26 +1,26 @@
 @if (count($consumers))
     <div class="table-responsive">
-        <table id="example1" class="table table-bordered table-striped">
+        <table id="example1" class="table table-sm table-bordered table-striped text-nowrap">
             <thead>
                 <tr>
                     <th style="width: 30px">#</th>
-                    <th>Номер лицевого счета</th>
+                    <th data-toggle="tooltip" title="Номер лицевого счета">Номер счета</th>
                     <th>ФИО</th>
-                    <th>Населенный пункт</th>
+                    <th data-toggle="tooltip" title="Населенный пункт">НП</th>
                     <th>Улица</th>
                     <th>Дом</th>
-                    <th>Корпус</th>
-                    <th>Квартира</th>
+                    <th data-toggle="tooltip" title="Корпус">К</th>
+                    <th data-toggle="tooltip" title="Квартира">Кв</th>
                     <th>Тип прибора учета</th>
                     <th>Заводской номер ПУ</th>
-                    <th>Дата гос проверки</th>
+                    <th data-toggle="tooltip" title="Дата гос проверки">Дата проверки</th>
                     <th>№ пломбы</th>
-                    <th>Год выпуска прибора учета</th>
+                    <th data-toggle="tooltip" title="Год выпуска прибора учета">Год выпуска</th>
                     <th>Зона суток</th>
                     <th>Дата обхода</th>
-                    <th>Показания прибора учета на дату обхода</th>
+                    <th data-toggle="tooltip" title="Показания прибора учета на дату обхода">Показания</th>
                     <th>Примечание</th>
-                    <th>Фото</th>
+                    <th data-toggle="tooltip" title="Фотофиксация показаний в альбомном виде">Фото</th>
                     <th>Действие</th>
                 </tr>
             </thead>
@@ -66,29 +66,6 @@
                     </tr>
                 @endforeach
             </tbody>
-            <tfoot>
-                <tr>
-                    <th style="width: 30px">#</th>
-                    <th>Номер лицевого счета</th>
-                    <th>ФИО</th>
-                    <th>Населенный пункт</th>
-                    <th>Улица</th>
-                    <th>Дом</th>
-                    <th>Корпус</th>
-                    <th>Квартира</th>
-                    <th>Тип прибора учета</th>
-                    <th>Заводской номер ПУ</th>
-                    <th>Дата гос проверки</th>
-                    <th>№ пломбы</th>
-                    <th>Год выпуска прибора учета</th>
-                    <th>Зона суток</th>
-                    <th>Дата обхода</th>
-                    <th>Показания прибора учета на дату обхода</th>
-                    <th>Примечание</th>
-                    <th>Фото</th>
-                    <th>Действие</th>
-                </tr>
-            </tfoot>
         </table>
     </div>
 @else
@@ -98,6 +75,7 @@
     <script>
         $(function() {
             $("#example1").DataTable({
+                autoWidth: false,
                 paging: false,
                 ordering: false,
                 info: false,
@@ -106,10 +84,11 @@
                 buttons: ["colvis"],
                 searching: false,
                 select: true,
-                colReorder: false,
+                colReorder: true,
                 stateSave: true,
 
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('[data-toggle="tooltip"]').tooltip()
         });
     </script>
 @endpush

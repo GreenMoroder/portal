@@ -70,14 +70,58 @@
         </aside>
         <!-- /.control-sidebar -->
         @if (session()->has('success'))
-            <div class="toast toast bg-success" style="position: fixed; bottom: 0; right: 0;" data-delay="5000">
-                <div class="toast-header">
-                    <strong class="mr-auto">{{ session('success') }}</strong>
-                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            </div>
+            <div class="success-toast" data-success="{{ session('success') }}"> </div>
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-bottom-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                    $warningError = $('.success-toast').attr('data-success');
+                    toastr["success"]($warningError)
+                });
+            </script>
+        @endif
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="error-toast" data-warning="{{ $error }}"></div>
+            @endforeach
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-bottom-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                    $warningError = $('.error-toast').attr('data-warning');
+                    toastr["error"]($warningError)
+                });
+            </script>
         @endif
     </div>
     <!-- ./wrapper -->
@@ -91,7 +135,7 @@
                 $(this).addClass('active');
                 $(this).closest('.has-treeview').addClass('menu-open');
             }
-            $('.toast').toast('show')
+
         });
     </script>
     @stack('scripts')

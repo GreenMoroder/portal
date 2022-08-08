@@ -36,8 +36,27 @@
                 </div>
             </div>
             <div class="card-body">
-
-
+                @if ($areas)
+                    <div class="row">
+                        @foreach ($areas as $area)
+                            <div class="col-lg-3 col-6">
+                                <div class="small-box bg-info">
+                                    <div class="inner">
+                                        <h3>{{ round($stat['progress'][$area->id]) }}<sup style="font-size: 20px">%</sup>
+                                        </h3>
+                                        <p> {{ $area->name }}</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="nav-icon fas fa-map"></i>
+                                    </div>
+                                    <a href="{{ route('employees-area.show', [$area->id]) }}" class="small-box-footer">
+                                        Подробнее <i class="fas fa-arrow-circle-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
             </div>
             <!-- /.card-body -->
             <div class="card-footer">

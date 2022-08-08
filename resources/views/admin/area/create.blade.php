@@ -30,8 +30,6 @@
             <div class="card-header">
                 <h3 class="card-title">Создать</h3>
             </div>
-
-
             <form method="POST" action="{{ route('areas.store') }}">
                 @csrf
                 <div class="card-body">
@@ -40,9 +38,7 @@
                         <input name="name" class="form-control @error('title') is-invalid @enderror" type="text"
                             class="form-control" id="exampleInputEmail1" placeholder="Название">
                     </div>
-
                 </div>
-
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Сохранить</button>
                 </div>

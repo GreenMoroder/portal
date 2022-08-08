@@ -19,22 +19,17 @@ class AreaController extends Controller
      */
     public function index()
     {
+        // $start = microtime(true);
         $areas = Area::orderBy('created_at')->get();
-        $consumerModel = Consumer::cursor();
-        foreach ($areas as $area) {
-            $total[$area->id] = $consumerModel->where('area_id', $area->id)->count();
-            $part[$area->id] = $consumerModel->where('area_id', $area->id)->where('reading', '!=', null)->count();
-            $progress[$area->id] = ($total[$area->id]) ? (($part[$area->id] / $total[$area->id]) * 100) : 0;
+        $consumers = Consumer::orderBy('created_at')->get();
+        if (!$areas->isEmpty()) {
+            $readingStat = $this->statCounter($areas, $consumers, 'reading');
+            $photoStat = $this->statCounter($areas, $consumers, 'photo');
+            // dump('Скрипт был выполнен за ' . (microtime(true) - $start) . ' секунд');
+            return view('admin.area.index', compact('areas', 'readingStat', 'photoStat'));
         }
-        return view('admin.area.index', compact('areas', 'total', 'part', 'progress'));
+        return view('admin.area.index', compact('areas'));
     }
-
-
-    public function countOne($area)
-    {
-        return $area->where('area_id', $area->id)->count();
-    }
-
 
     /**
      * Show the form for creating a new resource.
