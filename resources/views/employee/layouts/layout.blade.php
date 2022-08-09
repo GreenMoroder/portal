@@ -68,19 +68,7 @@
             <!-- Control sidebar content goes here -->
         </aside>
         <!-- /.control-sidebar -->
-        @if (session()->has('success'))
-            <div class="toast toast bg-success" style="position: fixed; bottom: 0; right: 0;" data-delay="5000">
-                <div class="toast-header">
-                    <strong class="mr-auto">{{ session('success') }}</strong>
-                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-
-            </div>
-        @endif
-
+        @include('sweetalert::alert')
     </div>
     <!-- ./wrapper -->
 

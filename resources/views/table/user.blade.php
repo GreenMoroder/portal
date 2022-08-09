@@ -1,5 +1,5 @@
 @if (count($users))
-    <div class="table-responsive">
+    <div class="table-responsive" style="min-height: 200px;">
         <table id="example1" class="table table-sm text-nowrap table-bordered table-striped">
             <thead>
                 <tr>
@@ -30,19 +30,16 @@
             <tbody>
                 @foreach ($users as $user)
                     <tr>
-
                         <td class="align-middle text-center">{{ $user->id }}</td>
                         <td>
                             <div class="btn-group">
-                                <a href="{{ route('users.show', [$user->id]) }}" type="button" class="btn btn-default">
+                                <a type="button" class="btn btn-default" href="{{ route('users.show', [$user->id]) }}">
                                     {{ $user->name }}</a>
                                 <button type="button" class="btn btn-default dropdown-toggle dropdown-icon"
                                     data-toggle="dropdown" aria-expanded="false">
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
-                                <div class="dropdown-menu" role="menu" style="">
-
-
+                                <div class="dropdown-menu" role="menu">
                                     <a class="dropdown-item" href="{{ route('users.edit', ['user' => $user->id]) }}"><i
                                             class="fas fa-edit"></i> Редактировать</a>
 

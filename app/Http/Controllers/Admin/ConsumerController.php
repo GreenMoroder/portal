@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Consumer;
-
 use App\Models\Area;
-
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ConsumersExport;
 use App\Imports\ConsumersImport;
@@ -20,6 +18,8 @@ class ConsumerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index(Request $request)
     {
         $uri = URL::full();
@@ -96,7 +96,7 @@ class ConsumerController extends Controller
         $data['photo'] = Consumer::uploadPhoto($request, $consumer->photo);
         $consumer->update($data);
         $request->session()->put('id', $id);
-        return redirect($uri . "#$id")->with('success', 'Данные успешно сохранены');
+        return redirect($uri . "#$id")->withSuccessMessage('Данные успешно сохранены');
     }
 
     /**
@@ -109,7 +109,7 @@ class ConsumerController extends Controller
     {
         $uri = session('uri');
         Consumer::destroy($id);
-        return redirect($uri . "#$id")->with('success', 'Данные о потребителе мягко удалены');
+        return redirect($uri . "#$id")->withSuccessMessage('Данные мягко удалены');;
     }
 
     public function export(Request $request)
@@ -129,6 +129,6 @@ class ConsumerController extends Controller
         $file = $request->file('file')->store('import');
         ini_set('memory_limit', '-1');
         Excel::import(new ConsumersImport($id), $file);
-        return redirect()->route('areas.show', ['area' => $id])->with('success', 'Файл импортирован');
+        return redirect()->route('areas.show', ['area' => $id])->withSuccessMessage('Файл импортирован');
     }
 }

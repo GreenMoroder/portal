@@ -38,8 +38,10 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Пользователь</label>
                         <input value="{{ $user->name }}" name="name"
-                            class="form-control @error('name') is-invalid @enderror" type="text" class="form-control"
-                            id="exampleInputEmail1">
+                            class="form-control @error('name') is-invalid @enderror" type="text" id="exampleInputEmail1">
+                        @error('name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label>Email</label>

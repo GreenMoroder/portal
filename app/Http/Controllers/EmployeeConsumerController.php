@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Area;
 use App\Models\Consumer;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\URL;
-// use jeremykenedy\LaravelLogger\App\Http\Traits\ActivityLogger;
-
-
 
 class EmployeeConsumerController extends Controller
 {
@@ -71,7 +69,6 @@ class EmployeeConsumerController extends Controller
      */
     public function edit($id)
     {
-        // ActivityLogger::activity("Logging this activity.");
         $areas = $this->getAreas();
         $consumer = Consumer::find($id);
         $area_id = $consumer->area_id;
@@ -88,9 +85,7 @@ class EmployeeConsumerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // ActivityLogger::activity("Logging this activity.");
         $uri = session('uri');
-
         $request->validate([
             'crawl_date' => 'nullable',
             'year_release' => 'nullable',
@@ -101,9 +96,10 @@ class EmployeeConsumerController extends Controller
         $consumer = Consumer::find($id);
         $data = $request->all();
         $data['photo'] = Consumer::uploadPhoto($request, $consumer->photo);
+        $data['crawl_date'] = Carbon::now()->format('d.m.Y');
         $consumer->update($data);
         $request->session()->put('id', $id);
-        return redirect($uri . "#$id")->with('success', 'Данные успешно сохранены');
+        return redirect($uri . "#$id")->withSuccessMessage('Данные успешно сохранены');
     }
 
     /**

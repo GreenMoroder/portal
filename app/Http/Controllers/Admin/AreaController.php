@@ -50,7 +50,7 @@ class AreaController extends Controller
     public function store(AreaRequest $request)
     {
         Area::create($request->all());
-        return redirect()->route('areas.index')->with('success', 'Локация добавлена');
+        return redirect()->route('areas.index')->withSuccessMessage('Локация добавлена');
     }
 
     /**
@@ -91,7 +91,7 @@ class AreaController extends Controller
     {
         $area = Area::find($id);
         $area->update($request->all());
-        return redirect()->route('areas.index')->with('success', 'Локация отредактирована');
+        return redirect()->route('areas.index')->withSuccessMessage('Локация отредактирована');
     }
 
     /**
@@ -103,6 +103,6 @@ class AreaController extends Controller
     public function destroy($id)
     {
         Area::destroy($id);
-        return redirect()->route('areas.index')->with('success', 'Локация удалена');
+        return redirect()->route('areas.index')->withSuccessMessage('Локация удалена');
     }
 }

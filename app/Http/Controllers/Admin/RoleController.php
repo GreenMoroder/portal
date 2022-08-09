@@ -49,7 +49,7 @@ class RoleController extends Controller
         ]);
         $permissions = Permission::whereIn('id', $request->permissions)->get();
         $newRole->syncPermissions($permissions);
-        return redirect()->route('roles.index')->with('success', "Роль «{$newRole['name']}» успешно создана");
+        return redirect()->route('roles.index')->withSuccessMessage("Роль «{$newRole['name']}» успешно создана");
     }
     /**
      * Display the specified resource.
@@ -99,7 +99,7 @@ class RoleController extends Controller
 
         $permissions = Permission::whereIn('id', $request->permissions)->get();
         $role->syncPermissions($permissions);
-        return redirect()->route('roles.index')->with('success', "Роль «{$role['name']}» успешно отредактирована");
+        return redirect()->route('roles.index')->withSuccessMessage("Роль «{$role['name']}» успешно отредактирована");
     }
 
     /**
@@ -112,6 +112,6 @@ class RoleController extends Controller
     {
         $role = Role::where('name', '!=', 'super-user')->findOrFail($role->id);
         Role::destroy($role->id);
-        return redirect()->route('roles.index')->with('success', "Роль «{$role['name']}» успешно удалена");
+        return redirect()->route('roles.index')->withSuccessMessage("Роль «{$role['name']}» успешно удалена");
     }
 }

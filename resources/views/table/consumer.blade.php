@@ -4,15 +4,15 @@
             <thead>
                 <tr>
                     <th style="width: 30px">#</th>
-                    <th data-toggle="tooltip" title="Номер лицевого счета">Номер счета</th>
+                    <th data-toggle="tooltip" title="Номер лицевого счета">№ счета</th>
                     <th>ФИО</th>
                     <th data-toggle="tooltip" title="Населенный пункт">НП</th>
                     <th>Улица</th>
                     <th>Дом</th>
                     <th data-toggle="tooltip" title="Корпус">К</th>
                     <th data-toggle="tooltip" title="Квартира">Кв</th>
-                    <th>Тип прибора учета</th>
-                    <th>Заводской номер ПУ</th>
+                    <th data-toggle="tooltip" title="Тип прибора учета">Тип ПУ</th>
+                    <th data-toggle="tooltip" title="Заводской номер ПУ">№ ПУ</th>
                     <th data-toggle="tooltip" title="Дата гос проверки">Дата проверки</th>
                     <th>№ пломбы</th>
                     <th data-toggle="tooltip" title="Год выпуска прибора учета">Год выпуска</th>
@@ -43,7 +43,8 @@
                         <td>{{ $consumer->day_zone }}</td>
                         <td>{{ $consumer->crawl_date }}</td>
                         <td>{{ $consumer->reading }}</td>
-                        <td>{{ $consumer->note }}</td>
+                        <td data-toggle="tooltip" title="{{ $consumer->note }}">{!! Illuminate\Support\Str::limit(strip_tags($consumer->note), 10) !!}
+                        </td>
                         <td><a target="_blank" href="{{ $consumer->getImage() }}"><img
                                     src="{{ $consumer->getImage() }}" class="img-thumbnail" width="100"></a></td>
 
@@ -86,7 +87,6 @@
                 select: true,
                 colReorder: true,
                 stateSave: true,
-
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('[data-toggle="tooltip"]').tooltip()
         });

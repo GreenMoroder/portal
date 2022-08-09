@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request as HttpRequest;
@@ -60,11 +59,5 @@ class Consumer extends Model
             return asset('assets/image/no-image.png');
         }
         return asset("../storage/app/$this->photo");
-    }
-
-    public function getCrawlDate()
-    {
-        $date = Carbon::parse($this->created_at);
-        return $date->format('d.m.Y');
     }
 }

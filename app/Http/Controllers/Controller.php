@@ -11,6 +11,16 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (session('success_message')) {
+                alert()->toast(session('success_message'), 'success');
+            }
+
+            return $next($request);
+        });
+    }
     protected function statCounter($areas, $consumers, $field)
     {
         foreach ($areas as $area) {

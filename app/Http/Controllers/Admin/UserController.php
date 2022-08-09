@@ -97,7 +97,7 @@ class UserController extends Controller
         $role = Role::find($request->role_id);
         $user->areas()->sync($request->areas);
         $user->syncRoles([$role->name]);
-        return redirect()->route('users.index')->with('success', 'Данные сохранены');
+        return redirect()->route('users.index')->withSuccessMessage('Данные сохранены');
     }
 
     /**
@@ -109,6 +109,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         User::destroy($user->id);
-        return redirect()->route('users.index')->with('success', 'Пользователь удален');
+        return redirect()->route('users.index')->withSuccessMessage('Пользователь удален');
     }
 }

@@ -7,6 +7,7 @@ use App\Models\Area;
 use App\Models\Consumer;
 use Illuminate\Support\Facades\URL;
 
+
 class EmployeeController extends Controller
 {
 

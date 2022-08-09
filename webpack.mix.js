@@ -18,7 +18,7 @@ mix.styles(
         'resources/assets/admin/plugins/select2/css/select2.css',
         'resources/assets/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.css',
         'resources/assets/admin/plugins/DataTables/datatables.css',
-        'resources/assets/admin/plugins/toastr/toastr.css'
+
     ],
     'public/assets/admin/css/adminlte.css');
 
@@ -30,7 +30,7 @@ mix.scripts(
         'resources/assets/admin/plugins/select2/js/select2.full.js',
         'resources/assets/admin/js/demo.js',
         'resources/assets/admin/plugins/DataTables/datatables.js',
-        'resources/assets/admin/plugins/toastr/toastr.min.js',
+
 
     ],
     'public/assets/admin/js/adminlte.js');
@@ -46,10 +46,6 @@ mix.copyDirectory(
 mix.copy(
     'resources/assets/admin/css/adminlte.css.map',
     'public/assets/admin/css/adminlte.css.map'
-)
-mix.copy(
-    'resources/assets/admin/plugins/toastr/toastr.js.map',
-    'public/assets/admin/js/toastr.js.map'
 )
 
 mix.js('resources/js/app.js', 'public/assets/auth/js')

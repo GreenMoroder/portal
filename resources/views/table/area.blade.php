@@ -1,5 +1,5 @@
 @if (count($areas))
-    <div class="table-responsive">
+    <div class="table-responsive" style="min-height: 200px;">
         <table id="example1" class="table table-sm text-nowrap table-bordered table-striped">
             <thead>
                 <tr>
@@ -17,14 +17,13 @@
                             <td class="align-middle text-center">{{ $area->id }}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('areas.show', [$area->id]) }}" type="button"
-                                        class="btn btn-default">
+                                    <a type="button" class="btn btn-default"href="{{ route('areas.show', [$area->id]) }}">
                                         {{ $area->name }}</a>
                                     <button type="button" class="btn btn-default dropdown-toggle dropdown-icon"
                                         data-toggle="dropdown" aria-expanded="false">
                                         <span class="sr-only">Toggle Dropdown</span>
                                     </button>
-                                    <div class="dropdown-menu" role="menu" style="">
+                                    <div class="dropdown-menu" role="menu">
 
                                         <a class="dropdown-item"
                                             href="{{ route('consumers.export', ['area' => $area->id, 'name' => $area->name]) }}"><i
@@ -86,16 +85,16 @@
     <script>
         $(function() {
             $("#example1").DataTable({
-                scrollX: true,
                 paging: false,
-                ordering: true,
+                ordering: false,
                 info: false,
-                stateSave: true,
                 responsive: false,
                 lengthChange: true,
-                autoWidth: false,
-                buttons: false,
                 searching: false,
+                select: false,
+                colReorder: false,
+                stateSave: true,
+
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
     </script>
