@@ -47,9 +47,25 @@
                         <td>{{ $consumer->reading }}</td>
                         <td data-toggle="tooltip" title="{{ $consumer->note }}">{!! Str::limit(strip_tags($consumer->note), 10) !!}
                         </td>
-                        <td><a target="_blank" href="{{ $consumer->getImage() }}"><img
-                                    src="{{ $consumer->getImage() }}" alt="" class="img-thumbnail"
-                                    width="100"></a>
+                        <td>
+
+
+
+                            <a type="button" data-toggle="modal" data-target="#myModal-{{ $consumer->id }}"
+                                href="{{ $consumer->getImage() }}"><img width="40"
+                                    src="{{ $consumer->getImage() }}" class="img-thumbnail"></a>
+
+
+                            <div id="myModal-{{ $consumer->id }}" class="modal fade bd-example-modal-xl" tabindex="-1"
+                                role="dialog" aria-labelledby="#myModal-{{ $consumer->id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-xl" role="document">
+                                    <div class="modal-content">
+                                        <img src="{{ $consumer->getImage() }}">
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </td>
                         @if (auth()->user()->can('edit'))
                             <td>

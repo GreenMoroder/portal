@@ -19,6 +19,7 @@ mix.styles(
         'resources/assets/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.css',
         'resources/assets/admin/plugins/DataTables/datatables.css',
 
+
     ],
     'public/assets/admin/css/adminlte.css');
 

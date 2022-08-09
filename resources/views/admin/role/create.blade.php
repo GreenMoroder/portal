@@ -24,36 +24,41 @@
 
     <!-- Main content -->
     <section class="content">
-        <!-- Default box -->
-        <div class="card card-primary">
-            <div class="card-header">
-                <h3 class="card-title">Создать</h3>
-            </div>
-            <form method="POST" action="{{ route('roles.store') }}">
-                @csrf
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Название роли</label>
-                        <input name="name" class="form-control @error('name') is-invalid @enderror" type="text"
-                            class="form-control" id="exampleInputEmail1" placeholder="Контроллер">
+        <div class="container-fluid">
+            <div class="col-md-6">
+                <!-- Default box -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Создать</h3>
                     </div>
-                    <div class="mt-4 mb-2">
-                        <b>Права доступа к ресурсу</b>
-                    </div>
-                    @foreach ($permissions as $permission)
-                        <div class="custom-control custom-checkbox">
-                            <input name="permissions[]" value="{{ $permission->id }}" type="checkbox"
-                                class="custom-control-input" id="{{ $permission->id }}">
-                            <label for="{{ $permission->id }}" class="custom-control-label">{{ $permission->name }}</label>
+                    <form method="POST" action="{{ route('roles.store') }}">
+                        @csrf
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Название роли</label>
+                                <input name="name" class="form-control @error('name') is-invalid @enderror"
+                                    type="text" class="form-control" id="exampleInputEmail1" placeholder="Контроллер">
+                            </div>
+                            <div class="mt-4 mb-2">
+                                <b>Права доступа к ресурсу</b>
+                            </div>
+                            @foreach ($permissions as $permission)
+                                <div class="custom-control custom-checkbox">
+                                    <input name="permissions[]" value="{{ $permission->id }}" type="checkbox"
+                                        class="custom-control-input" id="{{ $permission->id }}">
+                                    <label for="{{ $permission->id }}"
+                                        class="custom-control-label">{{ $permission->name }}</label>
+                                </div>
+                            @endforeach
                         </div>
-                    @endforeach
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Сохранить</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Сохранить</button>
-                </div>
-            </form>
+                <!-- /.card -->
+            </div>
         </div>
-        <!-- /.card -->
     </section>
     <!-- /.content -->
 @endsection

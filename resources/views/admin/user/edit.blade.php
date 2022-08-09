@@ -27,52 +27,60 @@
     <section class="content">
 
         <!-- Default box -->
-        <div class="card card-primary">
-            <div class="card-header">
-                <h3 class="card-title">Редактировать</h3>
+        <div class="container-fluid">
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Редактировать</h3>
+                    </div>
+                    <form method="POST" action="{{ route('users.update', $user->id) }}">
+                        @csrf
+                        @method ('PUT')
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Пользователь</label>
+                                <input value="{{ $user->name }}" name="name"
+                                    class="form-control @error('name') is-invalid @enderror" type="text"
+                                    id="exampleInputEmail1">
+                                @error('name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" class="form-control" placeholder="{{ $user->email }}" disabled="">
+                            </div>
+                            <div class="form-group">
+                                <label>Роль</label>
+                                <select name="role_id" class="form-control custom-select">
+                                    @foreach ($roles as $role)
+                                        <option
+                                            value="{{ $role['id'] }}"@if ($user->hasRole($role['name'])) selected @endif>
+                                            {{ $role['name'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="areas">Выбор локаций</label>
+                                <select name="areas[]" id="areas" class="select2" multiple="multiple"
+                                    data-placeholder="Выбор локаций" style="width: 100%;">
+                                    @foreach ($areas as $k => $v)
+                                        <option
+                                            value="{{ $k }}"@if (in_array($k, $user->areas->pluck('id')->all())) selected @endif>
+                                            {{ $v }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Сохранить</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
             </div>
-            <form method="POST" action="{{ route('users.update', $user->id) }}">
-                @csrf
-                @method ('PUT')
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Пользователь</label>
-                        <input value="{{ $user->name }}" name="name"
-                            class="form-control @error('name') is-invalid @enderror" type="text" id="exampleInputEmail1">
-                        @error('name')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="text" class="form-control" placeholder="{{ $user->email }}" disabled="">
-                    </div>
-                    <div class="form-group">
-                        <label>Роль</label>
-                        <select name="role_id" class="form-control">
-                            @foreach ($roles as $role)
-                                <option value="{{ $role['id'] }}"@if ($user->hasRole($role['name'])) selected @endif>
-                                    {{ $role['name'] }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="areas">Выбор локаций</label>
-                        <select name="areas[]" id="areas" class="select2" multiple="multiple"
-                            data-placeholder="Выбор локаций" style="width: 100%;">
-                            @foreach ($areas as $k => $v)
-                                <option value="{{ $k }}"@if (in_array($k, $user->areas->pluck('id')->all())) selected @endif>
-                                    {{ $v }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Сохранить</button>
-                </div>
-            </form>
         </div>
-        <!-- /.card -->
+
     </section>
     <!-- /.content -->
 @endsection

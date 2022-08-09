@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Models\Area;
 use App\Models\Consumer;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -21,7 +22,7 @@ class UserController extends Controller
         $consumers = Consumer::orderBy('created_at')->get();
         $users = User::orderBy('created_at')->where('email', '!=', 'greenmoroder@gmail.com')->get();
         $areas = Area::orderBy('created_at')->get();
-        if (!$users->isEmpty()) {
+        if (!$users->isEmpty() && !$areas->isEmpty()) {
             $readingStat = $this->statCounter($areas, $consumers, 'reading');
             $photoStat = $this->statCounter($areas, $consumers, 'photo');
             return view('admin.user.index', compact('users', 'readingStat', 'photoStat'));
@@ -36,7 +37,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+
+        $roles = Role::orderBy('name')->get();
+        $areas = Area::pluck('name', 'id')->all();
+
+        return view('admin.user.create', compact('roles', 'areas'));
     }
 
     /**
@@ -47,7 +52,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8'],
+            ]
+        );
+
+        $data = $request->all();
+        $data['password'] = Hash::make($data['password']);
+        User::firstOrCreate(['email' => $data['email']], $data);
+        return redirect()->route('users.index')->withSuccessMessage('Пользователь создан');
     }
 
     /**
@@ -88,7 +104,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'name' => 'required|max:255',
+            'name' => ['required', 'string', 'max:255'],
             'role_id' => 'required|integer|exists:roles,id',
         ]);
         $user->update([

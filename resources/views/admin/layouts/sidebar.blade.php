@@ -44,13 +44,35 @@
                            </p>
                        </a>
                    </li>
+
+
                    <li class="nav-item">
-                       <a href="{{ route('users.index') }}" class="nav-link">
+                       <a href="#" class="nav-link">
                            <i class="nav-icon fas fa-users"></i>
                            <p>
                                Пользователи
+
+                               <i class="right fas fa-angle-left"></i>
                            </p>
                        </a>
+                       <ul class="nav nav-treeview">
+                           <li class="nav-item">
+                               <a href="{{ route('users.index') }}" class="nav-link">
+                                   <i class="fas fa-list"></i>
+                                   <p>
+                                       Список
+                                   </p>
+                               </a>
+                           </li>
+                           <li class="nav-item">
+                               <a href="{{ route('users.create') }}" class="nav-link">
+                                   <i class="fas fa-plus"></i>
+                                   <p>
+                                       Создать
+                                   </p>
+                               </a>
+                           </li>
+                       </ul>
                    </li>
 
                    <li class="nav-item has-treeview">

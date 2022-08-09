@@ -25,35 +25,36 @@
 
     <!-- Main content -->
     <section class="content">
-
-        <!-- Default box -->
-        <div class="card card-primary">
-            <div class="card-header">
-                <h3 class="card-title">Редактировать</h3>
-            </div>
-            <form method="POST" action="{{ route('areas.update', ['area' => $area->id]) }}">
-                @csrf
-                @method ('PUT')
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Название</label>
-                        <input value="{{ $area->name }}" name="name"
-                            class="form-control @error('name') is-invalid @enderror" type="text" class="form-control"
-                            id="exampleInputEmail1">
-                        @error('name')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+        <div class="container-fluid">
+            <div class="col-md-6">
+                <!-- Default box -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Редактировать</h3>
                     </div>
+                    <form method="POST" action="{{ route('areas.update', ['area' => $area->id]) }}">
+                        @csrf
+                        @method ('PUT')
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Название</label>
+                                <input value="{{ $area->name }}" name="name"
+                                    class="form-control @error('name') is-invalid @enderror" type="text"
+                                    class="form-control" id="exampleInputEmail1">
+                                @error('name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
 
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Сохранить</button>
+                        </div>
+                    </form>
                 </div>
-
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Сохранить</button>
-                </div>
-            </form>
+                <!-- /.card -->
+            </div>
         </div>
-        <!-- /.card -->
-
     </section>
     <!-- /.content -->
 @endsection

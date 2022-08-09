@@ -18,6 +18,7 @@ class CreateAreaUserTable extends Migration
             $table->integer('area_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

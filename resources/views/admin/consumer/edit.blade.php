@@ -120,7 +120,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                         </div>
-                                        <input value="{{ $consumer->getCrawlDate() }}" name="crawl_date"
+                                        <input name="crawl_date"
                                             class="form-control @error('crawl_date') is-invalid @enderror" type="text"
                                             id="crawl_date" disabled>
                                     </div>

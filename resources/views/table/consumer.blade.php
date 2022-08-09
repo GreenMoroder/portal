@@ -45,8 +45,26 @@
                         <td>{{ $consumer->reading }}</td>
                         <td data-toggle="tooltip" title="{{ $consumer->note }}">{!! Illuminate\Support\Str::limit(strip_tags($consumer->note), 10) !!}
                         </td>
-                        <td><a target="_blank" href="{{ $consumer->getImage() }}"><img
-                                    src="{{ $consumer->getImage() }}" class="img-thumbnail" width="100"></a></td>
+                        <td>
+
+
+
+                            <a type="button" data-toggle="modal" data-target="#myModal-{{ $consumer->id }}"
+                                href="{{ $consumer->getImage() }}"><img width="40"
+                                    src="{{ $consumer->getImage() }}" class="img-thumbnail"></a>
+
+
+                            <div id="myModal-{{ $consumer->id }}" class="modal fade bd-example-modal-xl" tabindex="-1"
+                                role="dialog" aria-labelledby="#myModal-{{ $consumer->id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-xl" role="document">
+                                    <div class="modal-content">
+                                        <img src="{{ $consumer->getImage() }}">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </td>
 
                         <td>
                             <div class="btn-group">
@@ -89,6 +107,7 @@
                 stateSave: true,
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('[data-toggle="tooltip"]').tooltip()
+
         });
     </script>
 @endpush
