@@ -95,7 +95,6 @@ class ConsumerController extends Controller
         $data = $request->all();
         $data['photo'] = Consumer::uploadPhoto($request, $consumer->photo);
         $consumer->update($data);
-        $request->session()->put('id', $id);
         return redirect($uri . "#$id")->withSuccessMessage('Данные успешно сохранены');
     }
 
@@ -109,7 +108,7 @@ class ConsumerController extends Controller
     {
         $uri = session('uri');
         Consumer::destroy($id);
-        return redirect($uri . "#$id")->withSuccessMessage('Данные мягко удалены');;
+        return redirect($uri . "#$id")->withSuccessMessage("Данные о потребителе $id мягко удалены");;
     }
 
     public function export(Request $request)

@@ -1,4 +1,4 @@
-@extends('admin.layouts.layout')
+@extends('employee.layouts.layout')
 
 @section('title')
     Потребитель # {{ $consumer->id }}
@@ -14,8 +14,14 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ URL::previous() }}">Назад</a></li>
-                        <li class="breadcrumb-item active">Потребитель # {{ $consumer->id }}</li>
+                        <li class="breadcrumb-item"><a href="{{ route('personal') }}">Главная</a>
+                        </li>
+                        <li class="breadcrumb-item"><a
+                                href="{{ route('employees-area.show', ['employees_area' => $area->id]) }}">{{ preg_replace('/\d/', '', $area->name) . $consumer->house . ' ' . $consumer->building }}</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            квартира {{ $consumer->apartment }}
+                        </li>
                     </ol>
                 </div>
             </div>
@@ -28,7 +34,6 @@
             <div class="row">
                 <div class="col-md-6">
                     <!-- Default box -->
-
                     <div class="card card-secondary">
                         <div class="card-header">
                             <h3 class="card-title">{{ $consumer->full_name }}</h3>
@@ -82,7 +87,7 @@
                             <div class="form-group">
                                 <label>Дата гос проверки</label>
                                 <input type="text" class="form-control" placeholder="{{ $consumer->verif_date }}"
-                                    disabled="">
+                                    disabled>
                             </div>
                             <div class="form-group">
                                 <label>№ пломбы</label>
@@ -101,66 +106,67 @@
                     </div>
                     <!-- /.card -->
                 </div>
-
-
                 <div class="col-md-6">
                     <!-- Default box -->
                     <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">{{ $consumer->full_name }}</h3>
                         </div>
-                        <form enctype="multipart/form-data" method="POST"
-                            action="{{ route('consumers.update', ['consumer' => $consumer->id]) }}">
-                            @csrf
-                            @method ('PUT')
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="year_release">Год выпуска прибора учета</label>
-                                    <input value="{{ $consumer->year_release }}" name="year_release"
-                                        class="form-control @error('year_release') is-invalid @enderror" type="text"
-                                        id="year_release">
-                                </div>
-                                <div class="form-group">
-                                    <label>Дата обхода</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                                        </div>
-                                        <input name="crawl_date"
-                                            class="form-control @error('crawl_date') is-invalid @enderror" type="text"
-                                            id="crawl_date" disabled>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="reading">Показания прибора учета на дату обхода</label>
-                                    <input value="{{ $consumer->reading }}" name="reading"
-                                        class="form-control @error('reading') is-invalid @enderror" type="text"
-                                        id="reading">
-                                </div>
-                                <div class="form-group">
-                                    <label for="note">Примечание</label>
-                                    <textarea id="note" name="note" class="form-control @error('note') is-invalid @enderror" rows="3">{{ $consumer->note }}</textarea>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="photo">Фото</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input value="{{ $consumer->photo }}" name="photo" id="photo"
-                                                type="file" class="custom-file-input">
-                                            <label class="custom-file-label" for="photo">Choose file</label>
-                                        </div>
-                                    </div>
-                                    <div><img src="{{ $consumer->getImage() }}" alt=""
-                                            class="img-thumbnail mt-2" width="200">
-                                    </div>
-                                </div>
-
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="year_release">Год выпуска прибора учета</label>
+                                <input value="{{ $consumer->year_release }}" name="year_release"
+                                    class="form-control @error('year_release') is-invalid @enderror" type="text"
+                                    class="form-control" id="year_release" disabled>
                             </div>
+                            <div class="form-group">
+                                <label>Дата обхода</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                    </div>
+                                    <input value="{{ $consumer->crawl_date }}" type="text" class="form-control"
+                                        id="crawl_date"disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="reading">Показания прибора учета на дату обхода</label>
+                                <input value="{{ $consumer->reading }}" name="reading"
+                                    class="form-control @error('reading') is-invalid @enderror" type="text"
+                                    class="form-control" id="reading" disabled>
+                                @error('reading')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="note">Примечание</label>
+                                <textarea id="note" name="note" class="form-control @error('note') is-invalid @enderror" rows="3"
+                                    disabled>{{ $consumer->note }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                @error('photo')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                                <a type="button" data-toggle="modal" data-target="#modal"
+                                    href="{{ $consumer->getImage() }}"><img width="200"
+                                        src="{{ $consumer->getImage() }}" class="img-thumbnail mt-3"></a>
+                                <div id="modal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog"
+                                    aria-labelledby="#modal" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <img src="{{ $consumer->getImage() }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Сохранить</button>
+                                <a href="{{ session('uri') . "#$consumer->id" }}" type="button"
+                                    class="btn btn-primary">Вернуться</a>
                             </div>
-                        </form>
+                        </div>
+
                     </div>
                     <!-- /.card -->
                 </div>

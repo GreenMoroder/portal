@@ -58,7 +58,11 @@ class EmployeeConsumerController extends Controller
      */
     public function show($id)
     {
-        //
+        $areas = $this->getAreas();
+        $consumer = Consumer::find($id);
+        $area_id = $consumer->area_id;
+        $area = Area::find($area_id);
+        return view('employee.consumer.show', compact('consumer', 'areas', 'area'));
     }
 
     /**
@@ -98,7 +102,7 @@ class EmployeeConsumerController extends Controller
         $data['photo'] = Consumer::uploadPhoto($request, $consumer->photo);
         $data['crawl_date'] = Carbon::now()->format('d.m.Y');
         $consumer->update($data);
-        $request->session()->put('id', $id);
+        // $request->session()->put('id', $id);
         return redirect($uri . "#$id")->withSuccessMessage('Данные успешно сохранены');
     }
 
