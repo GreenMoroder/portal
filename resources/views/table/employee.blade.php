@@ -31,7 +31,7 @@
                         <td>
                             @if (auth()->user()->can('edit'))
                                 <div class="btn-group btn-group-sm">
-                                    <a class="btn btn-info"
+                                    <a onclick="event.stopImmediatePropagation()" class="btn btn-info"
                                         href="{{ route('employees-consumer.edit', ['employees_consumer' => $consumer->id]) }}">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>

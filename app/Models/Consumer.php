@@ -57,8 +57,8 @@ class Consumer extends Model
     public function getImage()
     {
         if (!$this->photo) {
-            return asset('assets/image/no-image.png');
+            return asset('assets/image/no-image.jpg');
         }
-        return asset("$this->photo");
+        return asset("assets/$this->photo");
     }
 }

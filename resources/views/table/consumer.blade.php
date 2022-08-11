@@ -30,7 +30,8 @@
                         <td>{{ $consumer->id }}</td>
                         <td>
                             <div class="btn-group">
-                                <a style="border-radius: 5px" class="mx-1 btn btn-info"
+                                <a onclick="event.stopImmediatePropagation()" style="border-radius: 5px"
+                                    class="mx-1 btn btn-info"
                                     href="{{ route('consumers.edit', ['consumer' => $consumer->id]) }}">
                                     <i class="fas fa-pencil-alt"></i>
                                 </a>
@@ -95,10 +96,11 @@
                 lengthChange: true,
                 buttons: ["colvis"],
                 searching: false,
-                select: true,
+                select: "single",
                 colReorder: true,
                 stateSave: true,
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
             $('[data-toggle="tooltip"]').tooltip()
 
         });

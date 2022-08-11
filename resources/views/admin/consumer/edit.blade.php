@@ -151,8 +151,19 @@
                                             <label class="custom-file-label" for="photo">Choose file</label>
                                         </div>
                                     </div>
-                                    <div><img src="{{ $consumer->getImage() }}" alt=""
-                                            class="img-thumbnail mt-2" width="200">
+                                    @error('photo')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                    <a type="button" data-toggle="modal" data-target="#modal"
+                                        href="{{ $consumer->getImage() }}"><img width="200"
+                                            src="{{ $consumer->getImage() }}" class="img-thumbnail mt-3"></a>
+                                    <div id="modal" class="modal fade bd-example-modal-xl" tabindex="-1"
+                                        role="dialog" aria-labelledby="#modal" aria-hidden="true">
+                                        <div class="modal-dialog modal-xl" role="document">
+                                            <div class="modal-content">
+                                                <img src="{{ $consumer->getImage() }}">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 

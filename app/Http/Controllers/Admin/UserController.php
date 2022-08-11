@@ -85,7 +85,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $roles = Role::orderBy('name')->get();
+        $roles = Role::where('name', '!=', 'super-user')->get();
         $areas = Area::pluck('name', 'id')->all();
         return view('admin.user.edit', compact([
             'user',
