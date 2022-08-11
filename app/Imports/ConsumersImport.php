@@ -7,20 +7,18 @@ use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 
-
 class ConsumersImport implements ToCollection
 {
-    private $consumer;
+    private $area_id;
     public function __construct($id)
     {
-        $this->consumer = $id;
+        $this->area_id = $id;
     }
 
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {
-            $consumer = Consumer::create([
-
+            Consumer::create([
                 'personal_account' =>  $row[0],
                 'full_name' => $row[1],
                 'district' => $row[2],
@@ -37,49 +35,8 @@ class ConsumersImport implements ToCollection
                 'crawl_date' => $row[13],
                 'reading' => $row[14],
                 'note' => $row[15],
-                'area_id' => $this->consumer
-
+                'area_id' => $this->area_id
             ]);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // public function model(array $row)
-    // {
-    //     return new Consumer([
-    //         'personal_account' =>  $row['1'],
-    //         'full_name' => $row['2'],
-    //         'district' => $row['3'],
-    //         'street' => $row['4'],
-    //         'house' => $row['5'],
-    //         'building' => $row['6'],
-    //         'apartment' => $row['7'],
-    //         'model' => $row['8'],
-    //         'number' => $row['9'],
-    //         'verif_date' => $row['10'],
-    //         'seal' => $row['11'],
-    //         'year_release' => $row['12'],
-    //         'day_zone' => $row['13'],
-    //         'crawl_date' => $row['14'],
-    //         'reading' => $row['15'],
-    //         'note' => $row['16'],
-    //     ]);
-    // }
 }

@@ -99,7 +99,7 @@ class EmployeeConsumerController extends Controller
         ]);
         $consumer = Consumer::find($id);
         $data = $request->all();
-        $data['photo'] = Consumer::uploadPhoto($request, $consumer->photo);
+        $data['photo'] = Consumer::uploadImage($request, $consumer->photo);
         $data['crawl_date'] = Carbon::now()->format('d.m.Y');
         $consumer->update($data);
         // $request->session()->put('id', $id);

@@ -93,7 +93,7 @@ class ConsumerController extends Controller
         ]);
         $consumer = Consumer::find($id);
         $data = $request->all();
-        $data['photo'] = Consumer::uploadPhoto($request, $consumer->photo);
+        $data['photo'] = Consumer::uploadImage($request, $consumer->photo);
         $consumer->update($data);
         return redirect($uri . "#$id")->withSuccessMessage('Данные успешно сохранены');
     }
@@ -121,13 +121,12 @@ class ConsumerController extends Controller
     public function import(Request $request)
     {
         $request->validate([
-            'file' => 'required',
-
+            'file' => 'required'
         ]);
-        $id = $request->category_id;
-        $file = $request->file('file')->store('import');
+        $id = $request->area_id;
+        $path = $request->file('file')->store('import');
         ini_set('memory_limit', '-1');
-        Excel::import(new ConsumersImport($id), $file);
+        Excel::import(new ConsumersImport($id), $path);
         return redirect()->route('areas.show', ['area' => $id])->withSuccessMessage('Файл импортирован');
     }
 }

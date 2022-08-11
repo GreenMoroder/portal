@@ -41,16 +41,17 @@ class Consumer extends Model
         return $this->belongsTo(Area::class);
     }
 
-    public static function uploadPhoto(HttpRequest $request, $photo = null)
+    public static function uploadImage(HttpRequest $request, $path = null)
     {
+
         if ($request->hasFile('photo')) {
-            if ($photo) {
-                Storage::delete($photo);
+            if ($path) {
+                Storage::delete($path);
             }
             $folder = date('Y-m-d');
             return $request->file('photo')->store("img/$folder");
         }
-        return $photo;
+        return $path;
     }
 
     public function getImage()
@@ -58,6 +59,6 @@ class Consumer extends Model
         if (!$this->photo) {
             return asset('assets/image/no-image.png');
         }
-        return asset("../storage/app/$this->photo");
+        return asset("$this->photo");
     }
 }
