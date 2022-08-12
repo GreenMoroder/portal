@@ -39,7 +39,7 @@
                             @endif
                             @if (auth()->user()->can('show'))
                                 <div class="btn-group btn-group-sm">
-                                    <a class="btn btn-secondary"
+                                    <a onclick="event.stopImmediatePropagation()" class="btn btn-secondary"
                                         href="{{ route('employees-consumer.show', ['employees_consumer' => $consumer->id]) }}">
                                         <i class="fas fa-eye"></i>
                                     </a>
